@@ -310,12 +310,8 @@ approach = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 </div></section>
 
 <section><div class="wrap">
-<div class="sec-head"><h2>Recent examples</h2></div>
-<ul class="examples">
-<li><span class="when">9 working days</span><h3>Full report rewrite</h3><p>A complete structural rewrite of an annual report for one of the largest MSX-listed companies, from kick-off to full draft.</p></li>
-<li><span class="when">11 working days</span><h3>Project taken over mid-way</h3><p>An annual report for a Saudi Exchange-listed pharmaceutical company, taken over mid-project and carried through to final draft.</p></li>
-<li><span class="when">48 hours</span><h3>Leadership statements</h3><p>Chairman and CEO statements for an MSX-listed energy company, drafted within two days of the CEO interview.</p></li>
-</ul>
+<div class="sec-head"><div><h2>Recognised reports</h2><p class="intro">Award-winning and shortlisted reports that Mikhail Seleznev contributed to.</p></div><a class="more" href="projects.html">All projects</a></div>
+<div class="rail" tabindex="0" aria-label="Recognised reports, scroll sideways">{"".join(card(p, i) for i, p in enumerate(PROJECTS) if p[7])}</div>
 </div></section>
 
 <section class="sec-oat"><div class="wrap split">
