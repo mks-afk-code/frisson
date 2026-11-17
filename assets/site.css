@@ -110,8 +110,21 @@ section { padding: clamp(64px, 9vw, 120px) 0; }
 .ph i { font-family: var(--serif); font-size: 18cqw; line-height: 1; opacity: .85; }
 
 /* Rail */
-.rail { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(220px, 24vw, 280px); gap: clamp(18px, 2.4vw, 32px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); padding: 4px var(--gutter) 24px; margin: 0 calc(var(--gutter) * -1); scrollbar-width: thin; scrollbar-color: var(--camel) transparent; }
-.rail > * { scroll-snap-align: start; }
+.car-track { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(220px, 24vw, 280px); gap: 28px; overflow-x: auto; padding-bottom: 16px; }
+.carousel.js .car-track { grid-auto-flow: row dense; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); overflow: visible; align-items: start; gap: 28px clamp(20px, 2.6vw, 36px); padding-bottom: 0; }
+.carousel.js .car-track > [hidden] { display: none; }
+.carousel.js.one .card.is-wide { grid-column: auto; }
+.carousel.js.one .card.is-wide .slot { aspect-ratio: auto; }
+.car-track.fade { animation: carfade .45s ease; }
+@keyframes carfade { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
+.car-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 36px; }
+.car-nav[hidden] { display: none; }
+.car-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--espresso); background: transparent; color: var(--espresso); display: grid; place-items: center; cursor: pointer; transition: background .2s, color .2s, opacity .2s; }
+.car-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.car-btn:hover:not(:disabled) { background: var(--espresso); color: var(--paper); }
+.car-btn:disabled { opacity: .3; cursor: default; }
+.car-count { font-size: 0.9rem; color: var(--bark); min-width: 3.5em; text-align: center; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .car-track.fade { animation: none; } }
 
 /* Project card */
 .card { display: block; position: relative; text-decoration: none; }
@@ -225,6 +238,13 @@ a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px
   .nav.open { display: flex; }
   .nav .pill { margin-top: 8px; }
   .list li { grid-template-columns: 1fr; }
-  .grid { grid-template-columns: repeat(2, 1fr); }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+  .carousel.js .car-track { gap: 32px 16px; }
+  .card h3 { font-size: 1rem; }
+  .award { font-size: 0.72rem; }
+  .acc summary .tag { display: none; }
+  .fan { max-width: 300px; margin: 8px auto 0; }
+  .hero .actions .btn { flex: 1 1 auto; justify-content: center; }
+  .sec-head { margin-bottom: 24px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }

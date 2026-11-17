@@ -106,6 +106,61 @@ def card(p, i, tag="article"):
     return f'<{tag} class="card{wcls}" data-kind="{kindkey}{rec}">{inner}</{tag}>'
 
 
+def carousel(label, cards):
+    return (f'<div class="carousel" data-carousel aria-roledescription="carousel" aria-label="{e(label)}">'
+            f'<div class="car-track" aria-live="polite">{cards}</div>'
+            '<div class="car-nav" hidden><button type="button" class="car-btn" data-dir="-1" aria-label="Previous projects">'
+            '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6"/></svg></button>'
+            '<span class="car-count"></span>'
+            '<button type="button" class="car-btn" data-dir="1" aria-label="Next projects">'
+            '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4l6 6-6 6"/></svg></button></div></div>')
+
+
+CAROUSEL_JS = """<script>
+(function () {
+  document.querySelectorAll('[data-carousel]').forEach(function (root) {
+    var track = root.querySelector('.car-track'), nav = root.querySelector('.car-nav');
+    var items = [].slice.call(track.children), count = root.querySelector('.car-count');
+    var prev = root.querySelector('[data-dir="-1"]'), next = root.querySelector('[data-dir="1"]');
+    var pages = [], cur = 0, cols = 0;
+    root.classList.add('js');
+    function columns() { var w = root.clientWidth; return w >= 980 ? 4 : w >= 620 ? 3 : 2; }
+    function build() {
+      var c = columns(); if (c === cols && pages.length) return; cols = c;
+      root.style.setProperty('--cols', c); root.classList.toggle('one', c === 1);
+      pages = []; var left = items.slice();
+      var units = function (it) { return c > 1 && it.classList.contains('is-wide') ? 2 : 1; };
+      while (left.length) {
+        var pg = [], used = 0;
+        for (var i = 0; i < left.length && used < c; ) {
+          if (used + units(left[i]) <= c) { used += units(left[i]); pg.push(left.splice(i, 1)[0]); } else { i++; }
+        }
+        pages.push(pg);
+      }
+      var first = items.indexOf((pages[cur] || pages[0])[0]);
+      cur = 0; pages.forEach(function (p, i) { if (p.indexOf(items[first]) >= 0) cur = i; });
+      show(false);
+    }
+    function show(anim) {
+      items.forEach(function (it) { it.hidden = pages[cur].indexOf(it) < 0; });
+      nav.hidden = pages.length < 2;
+      count.textContent = (cur + 1) + ' / ' + pages.length;
+      prev.disabled = cur === 0; next.disabled = cur === pages.length - 1;
+      if (anim) { track.classList.remove('fade'); void track.offsetWidth; track.classList.add('fade'); }
+    }
+    function go(d) { var n = cur + d; if (n < 0 || n >= pages.length) return; cur = n; show(true); }
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+    root.addEventListener('keydown', function (ev) { if (ev.key === 'ArrowLeft') go(-1); if (ev.key === 'ArrowRight') go(1); });
+    var x0 = null;
+    track.addEventListener('touchstart', function (ev) { x0 = ev.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function (ev) { if (x0 === null) return; var dx = ev.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); x0 = null; });
+    window.addEventListener('resize', build); build();
+  });
+})();
+</script>"""
+
+
 def page(fname, title, desc, body):
     nav = "".join(f'<a href="{h}"{" aria-current=\"page\"" if h == fname else ""}>{t}</a>' for h, t in NAV)
     cur = ' aria-current="page"' if fname == "contact.html" else ""
@@ -147,6 +202,7 @@ def page(fname, title, desc, body):
   b.addEventListener('click', function () {{ var o = n.classList.toggle('open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Close' : 'Menu'; }});
 }})();
 </script>
+{CAROUSEL_JS if "data-carousel" in body else ""}
 </body>
 </html>
 """
@@ -210,7 +266,7 @@ home = f"""<section class="hero"><div class="wrap">
 
 <section><div class="wrap">
 <div class="sec-head"><div><h2>Selected projects</h2><p class="intro">Reports for companies listed on the Saudi Exchange, DFM, ADX, Boursa Kuwait, MSX and Qatar Exchange.</p></div><a class="more" href="projects.html">All {len(PROJECTS)} projects</a></div>
-<div class="rail" tabindex="0" aria-label="Selected projects, scroll sideways">{rail}</div>
+{carousel("Selected projects", rail)}
 </div></section>
 
 <section class="sec-paper"><div class="wrap split">
@@ -311,7 +367,7 @@ approach = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 
 <section><div class="wrap">
 <div class="sec-head"><div><h2>Recognised reports</h2><p class="intro">Award-winning and shortlisted reports that Mikhail Seleznev contributed to.</p></div><a class="more" href="projects.html">All projects</a></div>
-<div class="rail" tabindex="0" aria-label="Recognised reports, scroll sideways">{"".join(card(p, i) for i, p in enumerate(PROJECTS) if p[7])}</div>
+{carousel("Recognised reports", "".join(card(p, i) for i, p in enumerate(PROJECTS) if p[7]))}
 </div></section>
 
 <section class="sec-oat"><div class="wrap split">
