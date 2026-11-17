@@ -62,6 +62,15 @@ BY = {p[0]: p for p in PROJECTS}
 NAV = [("services.html", "Services"), ("projects.html", "Projects"), ("approach.html", "Approach"), ("founder.html", "Founder")]
 
 
+def is_wide(slug):
+    for ext in ("jpg", "jpeg", "png", "webp"):
+        f = f"{ROOT}/assets/covers/{slug}.{ext}"
+        if os.path.exists(f):
+            w, h = Image.open(f).size
+            return w > h
+    return False
+
+
 def cover(p, i, eager=False):
     slug, company, kind, year = p[:4]
     for ext in ("jpg", "jpeg", "png", "webp"):
@@ -72,8 +81,8 @@ def cover(p, i, eager=False):
             src = f"assets/covers/{slug}.{ext}"
             alt = f"Cover of the {e(company)} {e(kind)} {year}"
             if w > h:
-                return (f'<div class="frame has-img wide"><img class="blur" src="{src}" alt=""{load}>'
-                        f'<img class="fg" src="{src}" width="{w}" height="{h}"{load} alt="{alt}"></div>')
+                return (f'<div class="slot"><div class="frame has-img wide" style="aspect-ratio:{w}/{h}">'
+                        f'<img src="{src}" width="{w}" height="{h}"{load} alt="{alt}"></div></div>')
             return f'<div class="frame has-img"><img src="{src}" width="{w}" height="{h}"{load} alt="{alt}"></div>'
     c, t = TONES[i % len(TONES)]
     return (f'<div class="frame"><div class="ph {t}" style="--c:{c}"><div><b>{e(company)}</b>'
@@ -93,7 +102,8 @@ def card(p, i, tag="article"):
              f'<p class="role">{e(role)}. {AGENCY}.</p>{aw}')
     if link:
         inner += f'<a class="link" href="{e(link)}" target="_blank" rel="noopener">View the report<span class="sr"> for {e(company)} {e(title)} (opens in a new tab)</span></a>'
-    return f'<{tag} class="card" data-kind="{kindkey}{rec}">{inner}</{tag}>'
+    wcls = " is-wide" if is_wide(slug) else ""
+    return f'<{tag} class="card{wcls}" data-kind="{kindkey}{rec}">{inner}</{tag}>'
 
 
 def page(fname, title, desc, body):
@@ -175,10 +185,10 @@ def accordion(items, open_first=True):
     return out + "</div>"
 
 
-PORTRAIT = '<figure><div class="portrait"><img src="assets/founder.jpg" width="400" height="469" alt="Mikhail Seleznev speaking on a panel"></div></figure>'
+PORTRAIT = '<figure><div class="portrait"><img src="assets/founder.jpg" width="299" height="299" alt="Mikhail Seleznev"></div></figure>'
 
 # ---------------------------------------------------------------- Home
-fan = "".join(cover(BY[s], i, eager=True) for i, s in enumerate(["oqep-ar25", "dtc-ar25", "burjeel-ar25"]))
+fan = "".join(cover(BY[s], i, eager=True) for i, s in enumerate(["luberef-ar25", "oqep-ar25", "gig-ar25"]))
 rail = "".join(card(BY[s], i) for i, s in enumerate(FEATURED))
 
 home = f"""<section class="hero"><div class="wrap">

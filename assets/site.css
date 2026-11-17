@@ -97,11 +97,12 @@ section { padding: clamp(64px, 9vw, 120px) 0; }
 /* Covers */
 .frame { aspect-ratio: 3 / 4; background: var(--sand); border-radius: 6px; overflow: hidden; display: grid; place-items: center; }
 .frame.has-img { background: var(--oat); padding: 0; }
-.frame.has-img > img:only-child { width: 100%; height: 100%; object-fit: cover; }
-.frame.wide { position: relative; }
-.frame.wide .blur { position: absolute; inset: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(22px) saturate(1.1); opacity: .9; }
-.frame.wide .fg { position: relative; width: 100%; height: auto; object-fit: contain; box-shadow: 0 10px 24px -10px rgba(0,0,0,.6); }
+.frame.has-img > img { width: 100%; height: 100%; object-fit: cover; }
 .frame { position: relative; }
+.slot { aspect-ratio: 3 / 4; display: flex; align-items: flex-end; }
+.slot .frame.wide { width: 100%; }
+.card.is-wide { grid-column: span 2; }
+.card.is-wide .slot { aspect-ratio: 3 / 2; }
 .ph { width: 100%; height: 100%; padding: 12% 11%; display: flex; flex-direction: column; justify-content: space-between; background: var(--c, var(--sand)); color: var(--espresso); container-type: inline-size; }
 .ph.dark { color: var(--paper); }
 .ph b { font-family: var(--serif); font-weight: 400; font-size: 10cqw; line-height: 1.15; }
@@ -114,7 +115,7 @@ section { padding: clamp(64px, 9vw, 120px) 0; }
 
 /* Project card */
 .card { display: block; position: relative; text-decoration: none; }
-.card .frame { transition: transform .3s ease, box-shadow .3s ease; box-shadow: 0 1px 0 rgba(43,33,24,.06); }
+.card .frame, .card .slot .frame { transition: transform .3s ease, box-shadow .3s ease; box-shadow: 0 1px 0 rgba(43,33,24,.06); }
 a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px rgba(43,33,24,.5); }
 .card h3 { margin-top: 16px; font-size: 1.08rem; }
 .card .sub { font-size: 0.88rem; color: var(--bark); margin-top: 2px; line-height: 1.5; }
@@ -127,7 +128,7 @@ a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px
 .award.short::before { background: var(--camel); }
 
 /* Grid */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: clamp(32px, 4vw, 52px) clamp(20px, 2.6vw, 36px); }
+.grid { grid-auto-flow: dense; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: clamp(32px, 4vw, 52px) clamp(20px, 2.6vw, 36px); }
 .grid article[hidden] { display: none; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
 .filters button { font: inherit; font-size: 0.9rem; color: inherit; background: var(--paper); padding: 8px 18px; border: 1px solid var(--sand); border-radius: 999px; cursor: pointer; }
@@ -175,9 +176,9 @@ a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px
 .examples p { color: var(--bark); font-size: 0.95rem; }
 
 /* Founder */
-.founder { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
-.portrait { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; background: var(--sand); }
-.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+.founder, .hero .wrap.founder { display: grid; grid-template-columns: minmax(0, 380px) 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+.portrait { border-radius: var(--radius); overflow: hidden; aspect-ratio: 1 / 1; background: var(--sand); }
+.portrait img { width: 100%; height: 100%; object-fit: cover; }
 .portrait + figcaption { font-size: 0.84rem; color: var(--bark); margin-top: 10px; }
 .bio p { font-size: 1.05rem; max-width: 34em; }
 .bio p + p { margin-top: 14px; }
@@ -210,12 +211,12 @@ a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px
 .site-foot a:hover { text-decoration: underline; }
 
 @media (max-width: 900px) {
-  .hero .wrap, .split, .founder { grid-template-columns: 1fr; }
+  .hero .wrap, .split, .founder, .hero .wrap.founder { grid-template-columns: 1fr; }
   .split > .stick { position: static; }
   .fan { max-width: 440px; width: 100%; margin: 0 auto; }
   .examples, .contact-list { grid-template-columns: 1fr; }
   .facts { grid-template-columns: 1fr; }
-  .portrait { max-width: 420px; }
+  .portrait { max-width: 360px; }
 }
 @media (max-width: 760px) {
   body { font-size: 16px; }
