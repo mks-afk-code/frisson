@@ -84,7 +84,7 @@ PROJECTS = [
 ]
 N_COMPANIES = 22
 
-NAV = [("services.html", "Services"), ("projects.html", "Projects"), ("approach.html", "Approach"), ("founder.html", "Founder")]
+NAV = [("index.html", "Home"), ("services.html", "Services"), ("projects.html", "Projects"), ("approach.html", "Approach"), ("founder.html", "Founder")]
 
 ind_count = Counter(p[2] for p in PROJECTS)
 cap_count = Counter(p[3] for p in PROJECTS)
