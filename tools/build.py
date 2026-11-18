@@ -223,6 +223,14 @@ def page(fname, title, desc, body):
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://frissonwriting.com/{fname if fname != "index.html" else ""}">
+<meta property="og:image" content="https://frissonwriting.com/assets/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Frisson Writing">
+<meta property="og:site_name" content="Frisson Writing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://frissonwriting.com/assets/share.png">
 <meta name="theme-color" content="#F3EDE2">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/lora.woff" as="font" type="font/woff" crossorigin>
@@ -265,18 +273,18 @@ CTA = f"""<section class="cta"><div class="wrap">
 SERVICES = [
     ("Annual and integrated reports", "Reporting", [
         "Reports that give investors a clear and consistent account of the company, with one narrative and set of key messages running from the leadership statements to the financial review.",
-        "Covers new reports and the enhancement of existing ones, including all operational, financial and other relevant disclosures."]),
+        "New reports and enhancements of existing ones, covering all operational, financial and other relevant disclosures."]),
     ("Sustainability reports", "Reporting", [
         "People-focused sustainability reports that highlight a company's efforts while meeting ESG rating requirements, disclosure rules and international frameworks such as GRI, SASB, the UN SDGs and IFRS S1 and S2.",
-        "Includes support with materiality assessments, data verification and preparation for public disclosure."]),
+        "Materiality assessments, data verification and preparation for public disclosure are included."]),
     ("Governance reports", "Reporting", [
-        "Development of governance reports in line with regional and international best practice, local listing rules and the expectations of the global investment community."]),
+        "Governance reports developed in line with regional and international best practice, local listing rules and the expectations of the global investment community."]),
     ("Investor communications", "Communications", [
         "Presentations, equity story development and FAQs that keep the company's message to the market consistent."]),
     ("Leadership messaging and profiles", "Communications", [
         "Statements and key messages for the chairman, CEO, CFO and other C-suite leaders, plus company profiles, drafted from interviews with leadership."]),
     ("Analysis and benchmarking", "Advisory", [
-        "Messaging proposals, gap analysis against frameworks and exchange requirements, and peer reviews across more than 20 data points."]),
+        "Messaging proposals, gap analyses against frameworks and exchange requirements, and peer reviews that show where a company stands."]),
 ]
 
 
@@ -364,7 +372,11 @@ services = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 <div class="stick"><h2>Competencies</h2><p class="intro">Each project draws on financial, sustainability and regulatory expertise.</p></div>
 <div>
 <ul class="list">{"".join(f"<li><h3>{e(t)}</h3><p>{e(d)}</p></li>" for t, d in COMP)}</ul>
-<ul class="tags" aria-label="Frameworks">{"".join(f"<li>{t}</li>" for t in ["GRI", "SASB", "UN SDGs", "IFRS S1", "IFRS S2", "Integrated reporting", "GCC listing rules"])}</ul>
+<div class="taggroups">
+<div><h3>Frameworks</h3><ul class="tags">{"".join(f"<li>{t}</li>" for t in ["GRI", "SASB", "UN SDGs", "IFRS S1", "IFRS S2", "Integrated reporting", "GCC listing rules"])}</ul></div>
+<div><h3>Exchanges</h3><ul class="tags">{"".join(f"<li>{EXCHANGES[k][0]}</li>" for k in GCC + ["moex"])}</ul></div>
+<div><h3>Skills</h3><ul class="tags">{"".join(f"<li>{t}</li>" for t in ["Messaging", "Narrative development", "Executive interviewing", "Copywriting", "Copyediting", "Benchmarking", "Materiality assessment", "Data verification"])}</ul></div>
+</div>
 </div>
 </div></section>
 {CTA}"""
@@ -381,9 +393,49 @@ def project_row(p):
         note = '<span class="status">In progress</span>'
     elif awards:
         note = "".join(award_pill(a) for a in awards)
-    return (f'<tr><td data-l="Year">{year}</td><td data-l="Document">{e(kind)}</td>'
+    xkeys = " ".join(sorted({('other' if x in OTHER else x) for x in exch})) or 'unlisted'
+    tkey = {AR: 'ar', IR: 'ir', SR: 'sr', CP: 'cp'}[kind]
+    return (f'<tr data-type="{tkey}" data-ind="{ind}" data-exch="{xkeys}" data-award="{1 if awards else 0}"><td data-l="Year">{year}</td><td data-l="Document">{e(kind)}</td>'
             f'<td data-l="Industry"><span class="cell-ind">{icon(ind, "ico sm")}{e(INDUSTRIES[ind][0])}</span></td>'
             f'<td data-l="Listing">{e(listing)}</td><td data-l="Size">{e(capl)}</td><td data-l="Notes" class="notes">{f'<div class="nwrap">{note}</div>' if note else ''}</td></tr>')
+
+
+TYPE_OPTS = [("ar", AR + "s"), ("ir", IR + "s"), ("sr", SR + "s"), ("cp", CP + "s")]
+EXCH_OPTS = [(k, EXCHANGES[k][0]) for k in GCC + ["moex"]] + [("other", "Other international exchanges"), ("unlisted", "Unlisted")]
+IND_OPTS = sorted(((k, v[0]) for k, v in INDUSTRIES.items()), key=lambda x: x[1])
+
+
+def select(name, label, opts):
+    o = "".join(f'<option value="{k}">{e(v)}</option>' for k, v in opts)
+    return f'<label class="pf"><span>{label}</span><select data-f="{name}"><option value="">All</option>{o}</select></label>'
+
+
+FILTERS = ('<form class="pfilters" aria-label="Filter projects" onsubmit="return false">'
+           + select("type", "Document", TYPE_OPTS) + select("ind", "Industry", IND_OPTS) + select("exch", "Exchange", EXCH_OPTS)
+           + '<label class="pf pf-check"><input type="checkbox" data-f="award"> <span>Awarded only</span></label>'
+           + '<button type="reset" class="pf-reset">Clear</button><p class="pf-count" aria-live="polite"></p></form>')
+
+FILTER_JS = """<script>
+(function () {
+  var form = document.querySelector('.pfilters'); if (!form) return;
+  var rows = [].slice.call(document.querySelectorAll('.ptable tbody tr'));
+  var count = form.querySelector('.pf-count'), empty = document.querySelector('.pf-empty');
+  function apply() {
+    var t = form.querySelector('[data-f=type]').value, i = form.querySelector('[data-f=ind]').value,
+        x = form.querySelector('[data-f=exch]').value, a = form.querySelector('[data-f=award]').checked, n = 0;
+    rows.forEach(function (r) {
+      var ok = (!t || r.dataset.type === t) && (!i || r.dataset.ind === i) &&
+               (!x || r.dataset.exch.split(' ').indexOf(x) >= 0) && (!a || r.dataset.award === '1');
+      r.hidden = !ok; if (ok) n++;
+    });
+    count.textContent = 'Showing ' + n + ' of ' + rows.length;
+    empty.hidden = n > 0;
+  }
+  form.addEventListener('change', apply);
+  form.addEventListener('reset', function () { setTimeout(apply, 0); });
+  apply();
+})();
+</script>"""
 
 
 projects = f"""<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
@@ -411,12 +463,15 @@ projects = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 
 <section class="sec-paper"><div class="wrap">
 <div class="sec-head"><h2>All projects</h2></div>
+{FILTERS}
 <div class="table-wrap"><table class="ptable">
 <thead><tr><th scope="col">Year</th><th scope="col">Document</th><th scope="col">Industry</th><th scope="col">Listing</th><th scope="col">Size</th><th scope="col">Notes</th></tr></thead>
 <tbody>{"".join(project_row(p) for p in PROJECTS)}</tbody>
 </table></div>
+<p class="pf-empty" hidden>No projects match these filters.</p>
 <p class="disclaimer">Awards were made to the reports and to the full teams that produced them.</p>
 </div></section>
+{FILTER_JS}
 {CTA}"""
 page("projects.html", "Projects | Frisson Writing",
      f"{N} reports and documents for {N_COMPANIES} companies across {len(EXCHANGES)} exchanges and {len(INDUSTRIES)} industries.", projects)
@@ -449,11 +504,6 @@ approach = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 <section class="sec-paper"><div class="wrap split">
 <div class="stick"><h2>How a project runs</h2><p class="intro">One writer handles every stage, so the narrative stays consistent from structure to final proof.</p></div>
 <ol class="timeline">{"".join(f"<li><h3>{s}</h3><p>{d}</p></li>" for s, d in STAGES)}</ol>
-</div></section>
-
-<section><div class="wrap split">
-<div class="stick"><h2>Recognised work</h2><p class="intro">Award-winning and shortlisted reports that Mikhail Seleznev contributed to.</p><div class="actions"><a class="btn ghost" href="projects.html">All projects</a></div></div>
-<ul class="awardlist">{"".join(award_item(p) for p in AWARDED)}</ul>
 </div></section>
 
 <section class="sec-oat"><div class="wrap split">
