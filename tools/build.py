@@ -258,25 +258,25 @@ def page(fname, title, desc, body):
 
 
 CTA = f"""<section class="cta"><div class="wrap">
-<div><h2>Discuss your next project</h2><p>Share the document, the timeline and where the content stands today.</p></div>
+<div><h2>Discuss your next project</h2><p>A short note on the document and the timeline is enough to start.</p></div>
 <a class="btn" href="mailto:{EMAIL}">{EMAIL}</a>
 </div></section>"""
 
 SERVICES = [
-    ("Annual and integrated reports", "Core service", [
+    ("Annual and integrated reports", "Reporting", [
         "Full content for the narrative section of the report. This covers the theme, structure and leadership statements, then the strategic, operational and financial reviews.",
-        "Suitable for first reports after an IPO, full rebuilds and yearly updates, including integrated reports built around the six capitals."]),
-    ("Sustainability reports", "Core service", [
-        "Sustainability and ESG reports aligned with GRI, SASB, the UN SDGs, IFRS S1 and S2 and local exchange guidance.",
+        "Suitable for first reports after an IPO, full rebuilds and yearly updates, with integrated formats built around the six capitals."]),
+    ("Sustainability reports", "Reporting", [
+        "ESG disclosure aligned with GRI, SASB, the UN SDGs, IFRS S1 and S2 and local exchange guidance.",
         "Includes support with materiality assessments and data collection."]),
-    ("Governance reports", "Core service", [
-        "Copyediting or full drafting of corporate governance reports against the listing rules of the relevant GCC market."]),
-    ("Investor communications", "Corporate communications", [
-        "Investor presentations, equity story development and investor FAQs that keep the company's message consistent across documents."]),
-    ("Corporate profiles and leadership messaging", "Corporate communications", [
-        "Corporate profiles, chairman and CEO statements and key messages drafted from interviews with leadership."]),
-    ("Messaging, analysis and benchmarking", "Consulting", [
-        "Messaging proposals, gap analysis against reporting frameworks and exchange requirements, and peer reviews across more than 20 data points."]),
+    ("Governance reports", "Reporting", [
+        "Copyediting or full drafting against the listing rules of the relevant GCC market."]),
+    ("Investor communications", "Communications", [
+        "Presentations, equity story development and FAQs that keep the company's message to the market consistent."]),
+    ("Leadership messaging and profiles", "Communications", [
+        "Chairman and CEO statements, key messages and company profiles, drafted from interviews with leadership."]),
+    ("Analysis and benchmarking", "Advisory", [
+        "Messaging proposals, gap analysis against frameworks and exchange requirements, and peer reviews across more than 20 data points."]),
 ]
 
 
@@ -305,7 +305,7 @@ home = f"""<section class="hero"><div class="wrap">
 <div class="actions"><a class="btn solid" href="projects.html">View projects</a><a class="btn ghost" href="contact.html">Get in touch</a></div>
 </div>
 <aside class="panel" aria-label="Exchanges covered">
-<p class="panel-t">Work for companies listed across the Gulf</p>
+<p class="panel-t">Exchanges covered</p>
 {exchanges_grid(counts=False)}
 </aside>
 </div></section>
@@ -313,8 +313,8 @@ home = f"""<section class="hero"><div class="wrap">
 <div class="recog"><div class="wrap">
 <p>Projects recognised at</p>
 <ul>
-<li><img src="assets/badges/arc.png" alt="ARC Awards" width="120" height="60"><span>Grand Award 2025 and 2026, plus Gold, Silver and Bronze</span></li>
-<li><img src="assets/badges/cfawards.png" alt="Corporate &amp; Financial Awards" width="100" height="50"><span>Gold 2023 and 2025, plus Silver and Bronze</span></li>
+<li><img src="assets/badges/arc.png" alt="ARC Awards" width="120" height="60"><span>Grand Awards in 2025 and 2026</span></li>
+<li><img src="assets/badges/cfawards.png" alt="Corporate &amp; Financial Awards" width="100" height="50"><span>Gold in 2023 and 2025</span></li>
 </ul>
 </div></div>
 
@@ -324,7 +324,7 @@ home = f"""<section class="hero"><div class="wrap">
 </div></section>
 
 <section class="sec-paper"><div class="wrap split">
-<div class="stick"><h2>Services</h2><p class="intro">Reports remain the core of the work. Investor and corporate communications build on the same story.</p><div class="actions"><a class="btn ghost" href="services.html">All services</a></div></div>
+<div class="stick"><h2>Services</h2><p class="intro">From full reports to investor and leadership messaging.</p><div class="actions"><a class="btn ghost" href="services.html">All services</a></div></div>
 {accordion(SERVICES[:5])}
 </div></section>
 
@@ -355,7 +355,7 @@ services = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 </div></section>
 
 <section class="sec-paper"><div class="wrap split">
-<div class="stick"><h2>What Frisson Writing delivers</h2></div>
+<div class="stick"><h2>Areas of work</h2></div>
 {accordion(SERVICES)}
 </div></section>
 
@@ -404,7 +404,7 @@ projects = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 </div></section>
 
 <section><div class="wrap">
-<div class="sec-head"><div><h2>By exchange</h2><p class="intro">Two reports were for companies listed on two exchanges, and one was for a private company.</p></div></div>
+<div class="sec-head"><div><h2>By exchange</h2><p class="intro">Two of the companies were dual-listed and one was privately held.</p></div></div>
 {exchanges_grid()}
 </div></section>
 
@@ -437,7 +437,7 @@ AWARDED = [p for p in PROJECTS if p[5]]
 def award_item(p):
     year, kind, ind, cap, exch, awards, _ = p
     listing = listing_label(exch)
-    return (f'<li>{icon(ind)}<div><h3>{e(kind)} {year}</h3><p>{e(INDUSTRIES[ind][0])}, listed on {e(listing)}</p>'
+    return (f'<li>{icon(ind)}<div><h3>{e(kind)} {year}</h3><p>{e(INDUSTRIES[ind][0])}<br><span class="muted-sm">{e(listing)}</span></p>'
             '<div class="awards">' + "".join(award_pill(a) for a in awards) + "</div></div></li>")
 
 
@@ -472,8 +472,8 @@ founder = f"""<section class="hero"><div class="wrap founder">
 {PORTRAIT}
 <div class="bio">
 <h1 style="margin-bottom:24px">Mikhail Seleznev</h1>
-<p>Mikhail founded Frisson Writing in 2026. He spent the previous five years in corporate and financial communications at Fanda in London and Dubai, where he led content on annual and sustainability reports for companies listed across the GCC and internationally.</p>
-<p>His work combines financial analysis with sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives and builds each narrative from those conversations.</p>
+<p>Before founding Frisson Writing in 2026, Mikhail spent five years at Fanda in London and Dubai, leading content on annual and sustainability reports for companies listed in the GCC and internationally.</p>
+<p>His work brings together financial analysis, sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives, and those conversations shape every narrative he builds.</p>
 </div>
 </div></section>
 
