@@ -329,3 +329,5 @@ a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px
   .recog ul { flex-direction: column; gap: 22px; }
   .recog ul li + li { padding-top: 22px; border-top: 1px solid var(--sand); }
 }
+
+.lede-2 { margin-top: 14px !important; }
