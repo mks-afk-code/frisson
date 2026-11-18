@@ -264,7 +264,8 @@ CTA = f"""<section class="cta"><div class="wrap">
 
 SERVICES = [
     ("Annual and integrated reports", "Reporting", [
-        "Development of new reports and enhancement of existing ones, covering all content including operational, financial and other relevant disclosures."]),
+        "Reports that give investors a clear and consistent account of the company, with one narrative and set of key messages running from the leadership statements to the financial review.",
+        "Covers new reports and the enhancement of existing ones, including all operational, financial and other relevant disclosures."]),
     ("Sustainability reports", "Reporting", [
         "People-focused sustainability reports that highlight a company's efforts while meeting ESG rating requirements, disclosure rules and international frameworks such as GRI, SASB, the UN SDGs and IFRS S1 and S2.",
         "Includes support with materiality assessments, data verification and preparation for public disclosure."]),
@@ -332,7 +333,7 @@ home = f"""<section class="hero"><div class="wrap">
 <div class="bio">
 <h2>About the founder</h2>
 <p>Mikhail Seleznev founded Frisson Writing in 2026 after five years in corporate and financial communications in London and Dubai.</p>
-<p>He has led content on more than 30 reports for listed and pre-IPO companies across the GCC and beyond, working directly with boards, executive teams and investor relations teams.</p>
+<p>He has led content on more than 30 reports for listed and pre-IPO companies across the GCC and beyond, working closely with investor relations and other internal teams, with input from boards and senior executives.</p>
 <div class="actions"><a class="btn ghost" href="founder.html">Read more</a><a class="btn ghost" href="approach.html">How projects run</a></div>
 </div>
 </div></section>
