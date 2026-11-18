@@ -28,14 +28,14 @@ def tremor(x0, x1, y, amp=5.0, waves=3.5, n=160):
 def build(out):
     lora = instantiateVariableFont(TTFont(G), {"wght": 500}); inter = TTFont(I)
     f, fw = text_path(lora, "Frisson", 96, 0, 0)
-    w, ww = text_path(inter, "WRITING", 15, 0, 0, track=10.5)
+    w, ww = text_path(inter, "WRITING", 27, 0, 0, track=7)
     W = fw + 24; ox = 12
     f, _ = text_path(lora, "Frisson", 96, ox, 92)
-    w, _ = text_path(inter, "WRITING", 15, ox + (fw - ww) / 2, 152, track=10.5)
+    w, _ = text_path(inter, "WRITING", 27, ox + (fw - ww) / 2, 162, track=7)
     line = tremor(ox, ox + fw, 120)
     for name, ink in (("logo", "#2B2118"), ("logo-light", "#F1EADD")):
         open(f"{out}/{name}.svg", "w").write(
-            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:.0f} 164" role="img" aria-label="Frisson Writing">'
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:.0f} 174" role="img" aria-label="Frisson Writing">'
             f'<path d="{f}" fill="{ink}"/><path d="{line}" fill="none" stroke="{ink}" stroke-width="1.6" stroke-linecap="round"/>'
             f'<path d="{w}" fill="{ink}"/></svg>')
     fp, fwid = text_path(lora, "F", 46, 0, 0)
