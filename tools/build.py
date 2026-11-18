@@ -274,7 +274,7 @@ SERVICES = [
     ("Investor communications", "Communications", [
         "Presentations, equity story development and FAQs that keep the company's message to the market consistent."]),
     ("Leadership messaging and profiles", "Communications", [
-        "Chairman and CEO statements, key messages and company profiles, drafted from interviews with leadership."]),
+        "Statements and key messages for the chairman, CEO, CFO and other C-suite leaders, plus company profiles, drafted from interviews with leadership."]),
     ("Analysis and benchmarking", "Advisory", [
         "Messaging proposals, gap analysis against frameworks and exchange requirements, and peer reviews across more than 20 data points."]),
 ]
