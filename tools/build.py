@@ -15,12 +15,12 @@ AR, IR, SR, CP = "Annual report", "Integrated report", "Sustainability report", 
 
 # Industries: key -> (label, svg path data on a 24 x 24 grid)
 INDUSTRIES = {
-    "energy": ("Energy and refining", "M12 3c3.6 4.5 6 7.7 6 10.6a6 6 0 0 1-12 0C6 10.7 8.4 7.5 12 3z M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"),
+    "energy": ("Energy and utilities", "M12 3c3.6 4.5 6 7.7 6 10.6a6 6 0 0 1-12 0C6 10.7 8.4 7.5 12 3z M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"),
     "transport": ("Transport and logistics", "M3 15h18l-2.6 4.5H5.6z M6 15V9.5h12V15 M9.5 9.5V6.5h5v3"),
     "health": ("Healthcare and pharma", "M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z M12 8.5v7 M8.5 12h7"),
     "insurance": ("Insurance", "M12 3l7 3v5.5c0 4.4-3 8-7 9.5-4-1.5-7-5.1-7-9.5V6z M9 12l2.2 2.2L15.5 10"),
     "materials": ("Metals and chemicals", "M9 3.5h6 M10 3.5v6L5.3 17.6A2 2 0 0 0 7 20.5h10a2 2 0 0 0 1.7-2.9L14 9.5v-6 M7.6 14.5h8.8"),
-    "consumer": ("Food and retail", "M5 8h14l-1.2 12H6.2z M9 8V6.5a3 3 0 0 1 6 0V8"),
+    "consumer": ("Consumer and retail", "M5 8h14l-1.2 12H6.2z M9 8V6.5a3 3 0 0 1 6 0V8"),
     "telecoms": ("Telecoms", "M12 11v10 M9 21h6 M8.6 7.6a4.8 4.8 0 0 0 0 6.8 M15.4 7.6a4.8 4.8 0 0 1 0 6.8 M5.8 4.8a8.8 8.8 0 0 0 0 12.4 M18.2 4.8a8.8 8.8 0 0 1 0 12.4 M12 11.2a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8z"),
     "services": ("Business services", "M4 8h16v11H4z M9 8V5.5h6V8 M4 13h16"),
 }
@@ -32,21 +32,18 @@ EXCHANGES = {
     "adx": ("Abu Dhabi Securities Exchange", "UAE", "adx.png"),
     "boursa": ("Boursa Kuwait", "Kuwait", "boursa.svg"),
     "moex": ("Moscow Exchange", "Russia", "moex.svg"),
-    "msx": ("Muscat Stock Exchange", "Oman", ""),
+    "msx": ("Muscat Stock Exchange", "Oman", "msx.png"),
     "qse": ("Qatar Stock Exchange", "Qatar", "qse.svg"),
     "aix": ("Astana International Exchange", "Kazakhstan", "aix.png"),
+    "kase": ("Kazakhstan Stock Exchange", "Kazakhstan", "kase.svg"),
 }
 
 # Size bands by market value around the time of the report (US$)
 CAPS = [("large", "Large cap", "Above US$10 billion"), ("mid", "Mid cap", "US$2 to 10 billion"),
         ("small", "Small cap", "Below US$2 billion"), ("private", "Unlisted", "Privately held")]
 
-# Awards confirmed from published results
-ARC25_GRAND = "Grand Award, ARC Awards 2025"
-CFA25_GOLD = "Gold, Corporate & Financial Awards 2025"
-ARC26_GRAND = "Grand Award, ARC Awards 2026"
-ARC26_SILVER = "Silver, ARC Awards 2026"
-CFA26_SHORT = "Shortlisted, Corporate & Financial Awards 2026"
+# Awards confirmed from published results (Communicate magazine winners lists, MerComm ARC winners, company releases)
+CF = "Corporate & Financial Awards"
 
 # year, report type, industry, size band, exchanges, awards, in progress
 PROJECTS = [
@@ -56,18 +53,20 @@ PROJECTS = [
     ("2026", AR, "transport", "mid", ["tadawul"], [], True),
     ("2026", AR, "insurance", "mid", ["tadawul"], [], True),
     ("2026", AR, "energy", "mid", ["tadawul"], [], True),
-    ("2025", AR, "energy", "mid", ["tadawul"], [], False),
-    ("2025", IR, "transport", "small", ["dfm"], [ARC26_SILVER, CFA26_SHORT], False),
-    ("2025", AR, "health", "mid", ["adx"], [CFA26_SHORT], False),
-    ("2025", AR, "health", "mid", ["tadawul"], [], False),
-    ("2025", AR, "energy", "mid", ["msx"], [ARC26_GRAND], False),
-    ("2025", AR, "insurance", "small", ["boursa"], [], False),
+    ("2025", IR, "energy", "large", ["tadawul"], ["Gold and Bronze, ARC Awards 2026"], False),
+    ("2025", AR, "energy", "mid", ["tadawul"], ["Silver, ARC Awards 2026"], False),
+    ("2025", IR, "transport", "small", ["dfm"], ["Gold and Silver, ARC Awards 2026", f"Silver, {CF} 2026"], False),
+    ("2025", AR, "health", "mid", ["adx"], ["Silver, ARC Awards 2026", f"Bronze, {CF} 2026"], False),
+    ("2025", AR, "health", "mid", ["tadawul"], ["Honors, ARC Awards 2026"], False),
+    ("2025", AR, "energy", "mid", ["msx"], ["Grand Award and Gold, ARC Awards 2026"], False),
+    ("2025", AR, "insurance", "small", ["boursa"], ["Gold, ARC Awards 2026"], False),
     ("2025", AR, "consumer", "mid", ["tadawul"], [], False),
     ("2025", AR, "transport", "mid", ["qse"], [], False),
     ("2025", AR, "materials", "mid", ["adx"], [], False),
     ("2025", AR, "transport", "small", ["dfm"], [], False),
     ("2025", CP, "insurance", "small", ["boursa"], [], False),
-    ("2024", IR, "transport", "small", ["dfm"], [ARC25_GRAND, CFA25_GOLD], False),
+    ("2024", IR, "energy", "large", ["tadawul"], [f"Bronze, {CF} 2025"], False),
+    ("2024", IR, "transport", "small", ["dfm"], ["Grand Award, ARC Awards 2025", f"Gold, {CF} 2025"], False),
     ("2024", AR, "health", "mid", ["adx"], [], False),
     ("2024", AR, "insurance", "small", ["boursa"], [], False),
     ("2024", AR, "consumer", "small", ["moex", "aix"], [], False),
@@ -76,10 +75,14 @@ PROJECTS = [
     ("2024", SR, "energy", "mid", ["tadawul"], [], False),
     ("2024", SR, "services", "small", ["tadawul"], [], False),
     ("2023", SR, "energy", "mid", ["tadawul"], [], False),
+    ("2023", SR, "consumer", "small", ["tadawul"], [], False),
     ("2023", AR, "materials", "large", ["moex"], [], False),
     ("2023", AR, "materials", "private", [], [], False),
+    ("2022", AR, "energy", "large", ["aix", "kase"], [f"Gold, {CF} 2023", "Honors, ARC Awards 2023"], False),
+    ("2022", AR, "materials", "mid", ["moex"], [], False),
+    ("2022", AR, "health", "small", ["moex"], [], False),
 ]
-N_COMPANIES = 17
+N_COMPANIES = 22
 
 NAV = [("services.html", "Services"), ("projects.html", "Projects"), ("approach.html", "Approach"), ("founder.html", "Founder")]
 
@@ -88,6 +91,11 @@ cap_count = Counter(p[3] for p in PROJECTS)
 exch_count = Counter(x for p in PROJECTS for x in p[4])
 type_count = Counter(p[1] for p in PROJECTS)
 N = len(PROJECTS)
+
+
+def award_pill(a):
+    top = a.startswith(("Grand", "Gold"))
+    return f'<span class="award{"" if top else " short"}">{e(a)}</span>'
 
 
 def icon(key, cls="ico"):
@@ -205,7 +213,7 @@ def page(fname, title, desc, body):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head"><div class="wrap">
-<a class="brand-text" href="index.html" aria-label="Frisson Writing, home"><span class="bf">Frisson</span><span class="bw">Writing</span></a>
+<a class="brand" href="index.html"><img src="assets/logo.svg" alt="Frisson Writing, home" width="104" height="52"></a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
 <nav class="nav" id="nav" aria-label="Main">{nav}<a class="pill" href="contact.html"{cur}>Contact</a></nav>
 </div></header>
@@ -287,13 +295,13 @@ home = f"""<section class="hero"><div class="wrap">
 <div class="recog"><div class="wrap">
 <p>Projects recognised at</p>
 <ul>
-<li>ARC Awards<span>Grand Award 2025 and 2026</span></li>
-<li>Corporate &amp; Financial Awards<span>Gold 2025</span></li>
+<li><img src="assets/badges/arc.png" alt="ARC Awards" width="120" height="60"><span>Grand Award 2025 and 2026, plus Gold, Silver and Bronze</span></li>
+<li><img src="assets/badges/cfawards.png" alt="Corporate &amp; Financial Awards" width="100" height="50"><span>Gold 2023 and 2025, plus Silver and Bronze</span></li>
 </ul>
 </div></div>
 
 <section><div class="wrap">
-<div class="sec-head"><div><h2>Track record</h2><p class="intro">{N} reports and documents for {N_COMPANIES} companies since 2023, including six in the 2026 reporting season.</p></div><a class="more" href="projects.html">Full breakdown</a></div>
+<div class="sec-head"><div><h2>Track record</h2><p class="intro">{N} reports and documents for {N_COMPANIES} companies since 2022.</p></div><a class="more" href="projects.html">Full breakdown</a></div>
 {industries_grid()}
 </div></section>
 
@@ -307,7 +315,7 @@ home = f"""<section class="hero"><div class="wrap">
 <div class="bio">
 <h2>About the founder</h2>
 <p>Mikhail Seleznev founded Frisson Writing in 2026 after five years in corporate and financial communications in London and Dubai.</p>
-<p>He has led content on more than 25 reports for listed and pre-IPO companies across the GCC, working directly with boards, executive teams and investor relations teams.</p>
+<p>He has led content on more than 30 reports for listed and pre-IPO companies across the GCC and beyond, working directly with boards, executive teams and investor relations teams.</p>
 <div class="actions"><a class="btn ghost" href="founder.html">Read more</a><a class="btn ghost" href="approach.html">How projects run</a></div>
 </div>
 </div></section>
@@ -353,14 +361,14 @@ def project_row(p):
     if live:
         note = '<span class="status">In progress</span>'
     elif awards:
-        note = "".join(f'<span class="award{" short" if "Shortlisted" in a else ""}">{e(a)}</span>' for a in awards)
+        note = "".join(award_pill(a) for a in awards)
     return (f'<tr><td data-l="Year">{year}</td><td data-l="Document">{e(kind)}</td>'
             f'<td data-l="Industry"><span class="cell-ind">{icon(ind, "ico sm")}{e(INDUSTRIES[ind][0])}</span></td>'
             f'<td data-l="Listing">{e(listing)}</td><td data-l="Size">{e(capl)}</td><td data-l="Notes" class="notes">{f'<div class="nwrap">{note}</div>' if note else ''}</td></tr>')
 
 
 projects = f"""<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
-<div><h1>Projects</h1><p class="lede">{N} reports and documents for {N_COMPANIES} companies since 2023: {type_line()}. Client names are withheld.</p></div>
+<div><h1>Projects</h1><p class="lede">{N} reports and documents for {N_COMPANIES} companies since 2022: {type_line()}. Client names are withheld.</p></div>
 </div></section>
 
 <section class="sec-paper"><div class="wrap">
@@ -378,7 +386,7 @@ projects = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 </div></section>
 
 <section><div class="wrap">
-<div class="sec-head"><div><h2>By exchange</h2><p class="intro">One report was for a company listed on two exchanges, and one was for a private company.</p></div></div>
+<div class="sec-head"><div><h2>By exchange</h2><p class="intro">Two reports were for companies listed on two exchanges, and one was for a private company.</p></div></div>
 {exchanges_grid()}
 </div></section>
 
@@ -412,7 +420,7 @@ def award_item(p):
     year, kind, ind, cap, exch, awards, _ = p
     listing = " and ".join(EXCHANGES[x][0] for x in exch)
     return (f'<li>{icon(ind)}<div><h3>{e(kind)} {year}</h3><p>{e(INDUSTRIES[ind][0])}, listed on {e(listing)}</p>'
-            '<div class="awards">' + "".join(f'<span class="award{" short" if "Shortlisted" in a else ""}">{e(a)}</span>' for a in awards) + "</div></div></li>")
+            '<div class="awards">' + "".join(award_pill(a) for a in awards) + "</div></div></li>")
 
 
 approach = f"""<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
@@ -446,7 +454,7 @@ founder = f"""<section class="hero"><div class="wrap founder">
 {PORTRAIT}
 <div class="bio">
 <h1 style="margin-bottom:24px">Mikhail Seleznev</h1>
-<p>Mikhail founded Frisson Writing in 2026. He spent the previous five years in corporate and financial communications at Fanda in London and Dubai, where he led content on annual and sustainability reports for companies listed across the GCC.</p>
+<p>Mikhail founded Frisson Writing in 2026. He spent the previous five years in corporate and financial communications at Fanda in London and Dubai, where he led content on annual and sustainability reports for companies listed across the GCC, Russia and Kazakhstan.</p>
 <p>His work combines financial analysis with sustainability reporting and investor messaging. He has interviewed more than 15 board members and senior executives and writes directly from those conversations.</p>
 </div>
 </div></section>
@@ -455,11 +463,11 @@ founder = f"""<section class="hero"><div class="wrap founder">
 <div class="stick"><h2>Background</h2></div>
 <div>
 <dl class="facts" style="margin-top:0">
-<div><dt>Financial Modelling and Valuation Analyst (FMVA)</dt><dd>Corporate Finance Institute, 2025</dd></div>
-<div><dt>Certificate in Sustainable Investing</dt><dd>CFA Institute, 2021</dd></div>
+<div class="cred"><dt><img src="assets/badges/fmva.svg" alt="" width="44" height="44">Financial Modelling and Valuation Analyst (FMVA)</dt><dd>Corporate Finance Institute, 2025</dd></div>
+<div class="cred"><dt><img src="assets/badges/cfa.svg" alt="" width="44" height="44">Certificate in Sustainable Investing</dt><dd>CFA Institute, 2021</dd></div>
 <div><dt>BA in History</dt><dd>Durham University, 2020</dd></div>
 <div><dt>Corporate Reporting Consultant</dt><dd>Fanda, London and Dubai, 2020 to 2026</dd></div>
-<div><dt>Awards judging</dt><dd>ARC Awards 2025 and MEIRA Reporting Awards 2025</dd></div>
+<div class="cred"><dt><img src="assets/badges/arc.png" alt="" width="60" height="30">Awards judging</dt><dd>ARC Awards 2025 and MEIRA Reporting Awards 2025</dd></div>
 <div><dt>Speaking</dt><dd>Workshops and panels at MEIRA conferences and chapter meetings</dd></div>
 </dl>
 <div class="actions"><a class="btn ghost" href="services.html#competencies">View competencies</a></div>
