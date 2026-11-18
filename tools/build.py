@@ -373,9 +373,9 @@ services = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 <div>
 <ul class="list">{"".join(f"<li><h3>{e(t)}</h3><p>{e(d)}</p></li>" for t, d in COMP)}</ul>
 <div class="taggroups">
+<div><h3>Skills</h3><ul class="tags">{"".join(f"<li>{t}</li>" for t in ["Messaging", "Narrative development", "Executive interviewing", "Copywriting", "Copyediting", "Benchmarking", "Materiality assessment", "Data verification"])}</ul>
 <div><h3>Frameworks</h3><ul class="tags">{"".join(f"<li>{t}</li>" for t in ["GRI", "SASB", "UN SDGs", "IFRS S1", "IFRS S2", "Integrated reporting", "GCC listing rules"])}</ul></div>
-<div><h3>Exchanges</h3><ul class="tags">{"".join(f"<li>{EXCHANGES[k][0]}</li>" for k in GCC + ["moex"])}</ul></div>
-<div><h3>Skills</h3><ul class="tags">{"".join(f"<li>{t}</li>" for t in ["Messaging", "Narrative development", "Executive interviewing", "Copywriting", "Copyediting", "Benchmarking", "Materiality assessment", "Data verification"])}</ul></div>
+<div><h3>Exchanges</h3><ul class="tags">{"".join(f"<li>{EXCHANGES[k][0]}</li>" for k in GCC + ["moex"])}</ul></div></div>
 </div>
 </div>
 </div></section>
