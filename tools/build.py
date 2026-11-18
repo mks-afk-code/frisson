@@ -264,13 +264,12 @@ CTA = f"""<section class="cta"><div class="wrap">
 
 SERVICES = [
     ("Annual and integrated reports", "Reporting", [
-        "Full content for the narrative section of the report. This covers the theme, structure and leadership statements, then the strategic, operational and financial reviews.",
-        "Suitable for first reports after an IPO, full rebuilds and yearly updates, with integrated formats built around the six capitals."]),
+        "Development of new reports and enhancement of existing ones, covering all content including operational, financial and other relevant disclosures."]),
     ("Sustainability reports", "Reporting", [
-        "ESG disclosure aligned with GRI, SASB, the UN SDGs, IFRS S1 and S2 and local exchange guidance.",
-        "Includes support with materiality assessments and data collection."]),
+        "People-focused sustainability reports that highlight a company's efforts while meeting ESG rating requirements, disclosure rules and international frameworks such as GRI, SASB, the UN SDGs and IFRS S1 and S2.",
+        "Includes support with materiality assessments, data verification and preparation for public disclosure."]),
     ("Governance reports", "Reporting", [
-        "Copyediting or full drafting against the listing rules of the relevant GCC market."]),
+        "Development of governance reports in line with regional and international best practice, local listing rules and the expectations of the global investment community."]),
     ("Investor communications", "Communications", [
         "Presentations, equity story development and FAQs that keep the company's message to the market consistent."]),
     ("Leadership messaging and profiles", "Communications", [
@@ -300,8 +299,8 @@ FIGURES = f"""<dl class="figs">
 # ---------------------------------------------------------------- Home
 home = f"""<section class="hero"><div class="wrap">
 <div>
-<h1>Writing for corporate communications</h1>
-<p class="lede">Frisson Writing shapes how listed companies across the Gulf present themselves to investors and stakeholders. Annual, integrated and sustainability reports sit at the centre, alongside investor presentations, corporate profiles and leadership messaging.</p>
+<h1 class="h-home">Writing and advisory for corporate communications</h1>
+<p class="lede">Frisson Writing helps shape how listed companies across the Gulf present themselves to investors and stakeholders. It develops the narrative and key messages that carry through annual, integrated and sustainability reports, investor presentations, corporate profiles and leadership communications.</p>
 <div class="actions"><a class="btn solid" href="projects.html">View projects</a><a class="btn ghost" href="contact.html">Get in touch</a></div>
 </div>
 <aside class="panel" aria-label="Exchanges covered">

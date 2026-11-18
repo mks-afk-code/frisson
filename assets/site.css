@@ -320,3 +320,12 @@ a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px
 .facts .cred img { position: absolute; left: 0; top: 14px; width: 48px; height: 48px; object-fit: contain; }
 
 .awardlist .muted-sm { font-size: 0.85rem; color: var(--camel); }
+
+/* Compact home heading */
+.hero h1.h-home { font-size: clamp(2.2rem, 4.2vw, 3.5rem); line-height: 1.08; max-width: 13em; }
+/* More room between award logos */
+.recog ul { gap: 18px 64px; }
+@media (max-width: 760px) {
+  .recog ul { flex-direction: column; gap: 22px; }
+  .recog ul li + li { padding-top: 22px; border-top: 1px solid var(--sand); }
+}
