@@ -224,9 +224,10 @@ a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px
 /* Exchanges panel and grid */
 .panel { background: var(--paper); border-radius: var(--radius); padding: clamp(22px, 3vw, 34px); }
 .panel-t { font-size: 0.9rem; color: var(--bark); margin-bottom: 18px; }
-.exch { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--sand); border: 1px solid var(--sand); border-radius: 10px; overflow: hidden; }
+.exch { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--sand); border: 1px solid var(--sand); border-radius: 10px; overflow: hidden; }
 .exch li { background: var(--paper); padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; }
 .panel .exch { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.exch .xword { font-size: 0.95rem; }
 .panel .exch li { padding: 12px; }
 .panel .exch .logo { height: 46px; }
 .panel .exch .logo img { max-height: 38px; }

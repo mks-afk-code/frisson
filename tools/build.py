@@ -115,13 +115,31 @@ def industries_grid():
         f'<li>{icon(k)}<span class="n">{ind_count[k]}</span><span class="l">{e(INDUSTRIES[k][0])}</span></li>' for k in items) + "</ul>"
 
 
+GCC = ["tadawul", "dfm", "adx", "boursa", "msx", "qse"]
+OTHER = ["aix", "kase"]
+
+
+def listing_label(exch):
+    if not exch:
+        return "Unlisted"
+    main = [EXCHANGES[x][0] for x in exch if x not in OTHER]
+    rest = [x for x in exch if x in OTHER]
+    if rest:
+        main.append("Other international exchanges" if len(rest) > 1 and not main else "an international exchange" if main else "International exchange")
+    return " and ".join(main)
+
+
 def exchanges_grid(counts=True):
-    items = sorted(EXCHANGES, key=lambda k: -exch_count[k])
-    out = '<ul class="exch">'
-    for k in items:
+    keys = GCC if not counts else sorted([k for k in EXCHANGES if k not in OTHER], key=lambda k: -exch_count[k])
+    out = '<ul class="exch' + ('' if counts else ' gcc') + '">'
+    for k in keys:
         name, country, _ = EXCHANGES[k]
         meta = f'<span class="meta"><b>{exch_count[k]}</b> {"report" if exch_count[k] == 1 else "reports"}<br>{e(country)}</span>' if counts else ""
         out += f'<li><div class="logo">{exch_logo(k)}</div>{meta}</li>'
+    if counts:
+        n = sum(1 for p in PROJECTS if any(x in OTHER for x in p[4]))
+        out += (f'<li><div class="logo"><span class="xword">Other international exchanges</span></div>'
+                f'<span class="meta"><b>{n}</b> {"report" if n == 1 else "reports"}<br>International</span></li>')
     return out + "</ul>"
 
 
@@ -287,7 +305,7 @@ home = f"""<section class="hero"><div class="wrap">
 <div class="actions"><a class="btn solid" href="projects.html">View projects</a><a class="btn ghost" href="contact.html">Get in touch</a></div>
 </div>
 <aside class="panel" aria-label="Exchanges covered">
-<p class="panel-t">Work for companies listed on</p>
+<p class="panel-t">Work for companies listed across the Gulf</p>
 {exchanges_grid(counts=False)}
 </aside>
 </div></section>
@@ -301,7 +319,7 @@ home = f"""<section class="hero"><div class="wrap">
 </div></div>
 
 <section><div class="wrap">
-<div class="sec-head"><div><h2>Track record</h2><p class="intro">{N} reports and documents for {N_COMPANIES} companies since 2022.</p></div><a class="more" href="projects.html">Full breakdown</a></div>
+<div class="sec-head"><div><h2>Track record</h2><p class="intro">{N} reports and documents for {N_COMPANIES} companies across a wide range of industries.</p></div><a class="more" href="projects.html">Full breakdown</a></div>
 {industries_grid()}
 </div></section>
 
@@ -355,7 +373,7 @@ page("services.html", "Services | Frisson Writing",
 # ---------------------------------------------------------------- Projects
 def project_row(p):
     year, kind, ind, cap, exch, awards, live = p
-    listing = " and ".join(EXCHANGES[x][0] for x in exch) or "Unlisted"
+    listing = listing_label(exch)
     capl = dict((k, l) for k, l, _ in CAPS)[cap]
     note = ""
     if live:
@@ -368,7 +386,7 @@ def project_row(p):
 
 
 projects = f"""<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
-<div><h1>Projects</h1><p class="lede">{N} reports and documents for {N_COMPANIES} companies since 2022: {type_line()}. Client names are withheld.</p></div>
+<div><h1>Projects</h1><p class="lede">{N} reports and documents for {N_COMPANIES} companies across a wide range of industries: {type_line()}. Client names are withheld.</p></div>
 </div></section>
 
 <section class="sec-paper"><div class="wrap">
@@ -418,7 +436,7 @@ AWARDED = [p for p in PROJECTS if p[5]]
 
 def award_item(p):
     year, kind, ind, cap, exch, awards, _ = p
-    listing = " and ".join(EXCHANGES[x][0] for x in exch)
+    listing = listing_label(exch)
     return (f'<li>{icon(ind)}<div><h3>{e(kind)} {year}</h3><p>{e(INDUSTRIES[ind][0])}, listed on {e(listing)}</p>'
             '<div class="awards">' + "".join(award_pill(a) for a in awards) + "</div></div></li>")
 
@@ -454,8 +472,8 @@ founder = f"""<section class="hero"><div class="wrap founder">
 {PORTRAIT}
 <div class="bio">
 <h1 style="margin-bottom:24px">Mikhail Seleznev</h1>
-<p>Mikhail founded Frisson Writing in 2026. He spent the previous five years in corporate and financial communications at Fanda in London and Dubai, where he led content on annual and sustainability reports for companies listed across the GCC, Russia and Kazakhstan.</p>
-<p>His work combines financial analysis with sustainability reporting and investor messaging. He has interviewed more than 15 board members and senior executives and writes directly from those conversations.</p>
+<p>Mikhail founded Frisson Writing in 2026. He spent the previous five years in corporate and financial communications at Fanda in London and Dubai, where he led content on annual and sustainability reports for companies listed across the GCC and internationally.</p>
+<p>His work combines financial analysis with sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives and builds each narrative from those conversations.</p>
 </div>
 </div></section>
 
@@ -465,7 +483,7 @@ founder = f"""<section class="hero"><div class="wrap founder">
 <dl class="facts" style="margin-top:0">
 <div class="cred"><dt><img src="assets/badges/fmva.svg" alt="" width="44" height="44">Financial Modelling and Valuation Analyst (FMVA)</dt><dd>Corporate Finance Institute, 2025</dd></div>
 <div class="cred"><dt><img src="assets/badges/cfa.svg" alt="" width="44" height="44">Certificate in Sustainable Investing</dt><dd>CFA Institute, 2021</dd></div>
-<div><dt>BA in History</dt><dd>Durham University, 2020</dd></div>
+<div><dt>BA in History</dt><dd>Durham University, UK, 2020</dd></div>
 <div><dt>Corporate Reporting Consultant</dt><dd>Fanda, London and Dubai, 2020 to 2026</dd></div>
 <div class="cred"><dt><img src="assets/badges/arc.png" alt="" width="60" height="30">Awards judging</dt><dd>ARC Awards 2025 and MEIRA Reporting Awards 2025</dd></div>
 <div><dt>Speaking</dt><dd>Workshops and panels at MEIRA conferences and chapter meetings</dd></div>
