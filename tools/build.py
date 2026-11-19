@@ -15,14 +15,15 @@ AR, IR, SR, CP = "Annual report", "Integrated report", "Sustainability report", 
 
 # Industries: key -> (label, svg path data on a 24 x 24 grid)
 INDUSTRIES = {
-    "energy": ("Energy and utilities", "M12 3c3.6 4.5 6 7.7 6 10.6a6 6 0 0 1-12 0C6 10.7 8.4 7.5 12 3z M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"),
-    "transport": ("Transport and logistics", "M3 15h18l-2.6 4.5H5.6z M6 15V9.5h12V15 M9.5 9.5V6.5h5v3"),
-    "health": ("Healthcare and pharma", "M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z M12 8.5v7 M8.5 12h7"),
-    "insurance": ("Insurance", "M12 3l7 3v5.5c0 4.4-3 8-7 9.5-4-1.5-7-5.1-7-9.5V6z M9 12l2.2 2.2L15.5 10"),
-    "materials": ("Metals and chemicals", "M9 3.5h6 M10 3.5v6L5.3 17.6A2 2 0 0 0 7 20.5h10a2 2 0 0 0 1.7-2.9L14 9.5v-6 M7.6 14.5h8.8"),
-    "consumer": ("Consumer and retail", "M5 8h14l-1.2 12H6.2z M9 8V6.5a3 3 0 0 1 6 0V8"),
-    "telecoms": ("Telecoms", "M12 11v10 M9 21h6 M8.6 7.6a4.8 4.8 0 0 0 0 6.8 M15.4 7.6a4.8 4.8 0 0 1 0 6.8 M5.8 4.8a8.8 8.8 0 0 0 0 12.4 M18.2 4.8a8.8 8.8 0 0 1 0 12.4 M12 11.2a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8z"),
-    "services": ("Business services", "M4 8h16v11H4z M9 8V5.5h6V8 M4 13h16"),
+    "energy": ("Energy", "M12 3c3.6 4.5 6 7.7 6 10.6a6 6 0 0 1-12 0C6 10.7 8.4 7.5 12 3z M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"),
+    "utilities": ("Utilities", "M13.5 3L5.5 13.5h6L10.5 21l8-10.5h-6z"),
+    "industrials": ("Industrials", "M3 15h18l-2.6 4.5H5.6z M6 15V9.5h12V15 M9.5 9.5V6.5h5v3"),
+    "health": ("Health Care", "M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z M12 8.5v7 M8.5 12h7"),
+    "financials": ("Financials", "M3.5 9L12 4.5 20.5 9 M5.5 9.5v8 M10 9.5v8 M14 9.5v8 M18.5 9.5v8 M3.5 20h17"),
+    "materials": ("Materials", "M9 3.5h6 M10 3.5v6L5.3 17.6A2 2 0 0 0 7 20.5h10a2 2 0 0 0 1.7-2.9L14 9.5v-6 M7.6 14.5h8.8"),
+    "staples": ("Consumer Staples", "M5 8h14l-1.2 12H6.2z M9 8V6.5a3 3 0 0 1 6 0V8"),
+    "discretionary": ("Consumer Discretionary", "M3 4.5h2.5l2.2 10.5h10.4l2-7.5H6.6 M9.5 19.5a1.2 1.2 0 1 0 0-.01 M16.5 19.5a1.2 1.2 0 1 0 0-.01"),
+    "comms": ("Communication Services", "M12 11v10 M9 21h6 M8.6 7.6a4.8 4.8 0 0 0 0 6.8 M15.4 7.6a4.8 4.8 0 0 1 0 6.8 M5.8 4.8a8.8 8.8 0 0 0 0 12.4 M18.2 4.8a8.8 8.8 0 0 1 0 12.4 M12 11.2a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8z"),
 }
 
 # Exchanges: key -> (label, country, logo file or "")
@@ -47,35 +48,35 @@ CF = "Corporate & Financial Awards"
 
 # year, report type, industry, size band, exchanges, awards, in progress
 PROJECTS = [
-    ("2026", IR, "telecoms", "large", ["dfm"], [], True),
+    ("2026", IR, "comms", "large", ["dfm"], [], True),
     ("2026", IR, "health", "mid", ["adx"], [], True),
-    ("2026", IR, "transport", "small", ["dfm"], [], True),
-    ("2026", AR, "transport", "mid", ["tadawul"], [], True),
-    ("2026", AR, "insurance", "mid", ["tadawul"], [], True),
+    ("2026", IR, "industrials", "small", ["dfm"], [], True),
+    ("2026", AR, "industrials", "mid", ["tadawul"], [], True),
+    ("2026", AR, "financials", "mid", ["tadawul"], [], True),
     ("2026", AR, "energy", "mid", ["tadawul"], [], True),
-    ("2025", IR, "energy", "large", ["tadawul"], ["Gold and Bronze, ARC Awards 2026"], False),
+    ("2025", IR, "utilities", "large", ["tadawul"], ["Gold and Bronze, ARC Awards 2026"], False),
     ("2025", AR, "energy", "mid", ["tadawul"], ["Silver, ARC Awards 2026"], False),
-    ("2025", IR, "transport", "small", ["dfm"], ["Gold and Silver, ARC Awards 2026", f"Silver, {CF} 2026"], False),
+    ("2025", IR, "industrials", "small", ["dfm"], ["Gold and Silver, ARC Awards 2026", f"Silver, {CF} 2026"], False),
     ("2025", AR, "health", "mid", ["adx"], ["Silver, ARC Awards 2026", f"Bronze, {CF} 2026"], False),
     ("2025", AR, "health", "mid", ["tadawul"], ["Honors, ARC Awards 2026"], False),
     ("2025", AR, "energy", "mid", ["msx"], ["Grand Award and Gold, ARC Awards 2026"], False),
-    ("2025", AR, "insurance", "small", ["boursa"], ["Gold, ARC Awards 2026"], False),
-    ("2025", AR, "consumer", "mid", ["tadawul"], [], False),
-    ("2025", AR, "transport", "mid", ["qse"], [], False),
+    ("2025", AR, "financials", "small", ["boursa"], ["Gold, ARC Awards 2026"], False),
+    ("2025", AR, "staples", "mid", ["tadawul"], [], False),
+    ("2025", AR, "industrials", "mid", ["qse"], [], False),
     ("2025", AR, "materials", "mid", ["adx"], [], False),
-    ("2025", AR, "transport", "small", ["dfm"], [], False),
-    ("2025", CP, "insurance", "small", ["boursa"], [], False),
-    ("2024", IR, "energy", "large", ["tadawul"], [f"Bronze, {CF} 2025"], False),
-    ("2024", IR, "transport", "small", ["dfm"], ["Grand Award, ARC Awards 2025", f"Gold, {CF} 2025"], False),
+    ("2025", AR, "industrials", "small", ["dfm"], [], False),
+    ("2025", CP, "financials", "small", ["boursa"], [], False),
+    ("2024", IR, "utilities", "large", ["tadawul"], [f"Bronze, {CF} 2025"], False),
+    ("2024", IR, "industrials", "small", ["dfm"], ["Grand Award, ARC Awards 2025", f"Gold, {CF} 2025"], False),
     ("2024", AR, "health", "mid", ["adx"], [], False),
-    ("2024", AR, "insurance", "small", ["boursa"], [], False),
-    ("2024", AR, "consumer", "small", ["moex", "aix"], [], False),
-    ("2024", IR, "transport", "small", ["dfm"], [], False),
+    ("2024", AR, "financials", "small", ["boursa"], [], False),
+    ("2024", AR, "staples", "small", ["moex", "aix"], [], False),
+    ("2024", IR, "industrials", "small", ["dfm"], [], False),
     ("2024", AR, "materials", "mid", ["adx"], [], False),
     ("2024", SR, "energy", "mid", ["tadawul"], [], False),
-    ("2024", SR, "services", "small", ["tadawul"], [], False),
+    ("2024", SR, "industrials", "small", ["tadawul"], [], False),
     ("2023", SR, "energy", "mid", ["tadawul"], [], False),
-    ("2023", SR, "consumer", "small", ["tadawul"], [], False),
+    ("2023", SR, "discretionary", "small", ["tadawul"], [], False),
     ("2023", AR, "materials", "large", ["moex"], [], False),
     ("2023", AR, "materials", "private", [], [], False),
     ("2022", AR, "energy", "large", ["aix", "kase"], [f"Gold, {CF} 2023", "Honors, ARC Awards 2023"], False),
@@ -83,6 +84,7 @@ PROJECTS = [
     ("2022", AR, "health", "small", ["moex"], [], False),
 ]
 N_COMPANIES = 22
+N_LISTED = 21
 
 NAV = [("index.html", "Home"), ("services.html", "Services"), ("projects.html", "Projects"), ("approach.html", "Approach"), ("founder.html", "Founder")]
 
@@ -96,6 +98,27 @@ N = len(PROJECTS)
 def award_pill(a):
     top = a.startswith(("Grand", "Gold"))
     return f'<span class="award{"" if top else " short"}">{e(a)}</span>'
+
+
+def award_tally(name):
+    tally = {}
+    for p in PROJECTS:
+        for a in p[5]:
+            if name in a:
+                for lvl in a.split(",")[0].split(" and "):
+                    lvl = lvl.strip().replace("Grand Award", "Grand")
+                    tally[lvl] = tally.get(lvl, 0) + 1
+    order = ["Grand", "Gold", "Silver", "Bronze", "Honors"]
+    return [(l, tally[l]) for l in order if l in tally]
+
+
+def recognition_cards():
+    out = '<div class="recards">'
+    for logo, alt, key, years in [("arc.png", "ARC Awards", "ARC Awards", "2023 and 2026"),
+                                  ("cfawards.png", "Corporate &amp; Financial Awards", "Corporate & Financial", "2023 and 2026")]:
+        chips = "".join(f'<li><b>{n}</b>{l}{"" if l in ("Honors",) else (" Award" if l == "Grand" else "")}</li>' for l, n in award_tally(key))
+        out += f'<article class="recard"><img src="assets/badges/{logo}" alt="{alt}"><ul class="chips">{chips}</ul><p class="small-note">Awards won between {years}</p></article>'
+    return out + "</div>"
 
 
 def icon(key, cls="ico"):
@@ -129,9 +152,10 @@ def listing_label(exch):
     return " and ".join(main)
 
 
-def exchanges_grid(counts=True):
-    keys = GCC if not counts else sorted([k for k in EXCHANGES if k not in OTHER], key=lambda k: -exch_count[k])
-    out = '<ul class="exch' + ('' if counts else ' gcc') + '">'
+def exchanges_grid(counts=True, keys=None):
+    flat = keys
+    keys = keys or (GCC if not counts else sorted([k for k in EXCHANGES if k not in OTHER], key=lambda k: -exch_count[k]))
+    out = '<ul class="exch' + ('' if counts else ' gcc') + (' flat' if flat else '') + '">'
     for k in keys:
         name, country, _ = EXCHANGES[k]
         meta = f'<span class="meta"><b>{exch_count[k]}</b> {"report" if exch_count[k] == 1 else "reports"}<br>{e(country)}</span>' if counts else ""
@@ -272,19 +296,17 @@ CTA = f"""<section class="cta"><div class="wrap">
 
 SERVICES = [
     ("Annual and integrated reports", "Reporting", [
-        "Reports that give investors a clear and consistent account of the company, with one narrative and set of key messages running from the leadership statements to the financial review.",
-        "New reports and enhancements of existing ones, covering all operational, financial and other relevant disclosures."]),
+        "Annual and integrated reports developed around one consistent narrative and set of key messages, covering all operational, financial and other relevant disclosures."]),
     ("Sustainability reports", "Reporting", [
-        "People-focused sustainability reports that highlight a company's efforts while meeting ESG rating requirements, disclosure rules and international frameworks such as GRI, SASB, the UN SDGs and IFRS S1 and S2.",
-        "Materiality assessments, data verification and preparation for public disclosure are included."]),
+        "People-focused sustainability reports developed in line with ESG rating requirements, disclosure rules and international frameworks such as GRI, SASB, the UN SDGs and IFRS S1 and S2."]),
     ("Governance reports", "Reporting", [
-        "Governance reports developed in line with regional and international best practice, local listing rules and the expectations of the global investment community."]),
+        "Governance reports developed in line with regional and international best practice and local listing rules."]),
     ("Investor communications", "Communications", [
         "Presentations, equity story development and FAQs that keep the company's message to the market consistent."]),
     ("Leadership messaging and profiles", "Communications", [
         "Statements and key messages for the chairman, CEO, CFO and other C-suite leaders, plus company profiles, drafted from interviews with leadership."]),
     ("Analysis and benchmarking", "Advisory", [
-        "Messaging proposals, gap analyses against frameworks and exchange requirements, and peer reviews that show where a company stands."]),
+        "Messaging proposals, gap analyses, peer reviews, materiality assessments and data verification ahead of public disclosure."]),
 ]
 
 
@@ -299,50 +321,56 @@ def accordion(items, open_first=True):
 PORTRAIT = '<figure><div class="portrait"><img src="assets/founder.jpg" width="299" height="299" alt="Mikhail Seleznev"></div></figure>'
 
 FIGURES = f"""<dl class="figs">
-<div><dt>Reports and documents</dt><dd>{N}</dd></div>
-<div><dt>Companies</dt><dd>{N_COMPANIES}</dd></div>
+<div><dt>Reports</dt><dd>{N}</dd></div>
+<div><dt>Listed companies</dt><dd>{N_LISTED}</dd></div>
 <div><dt>Exchanges</dt><dd>{len(EXCHANGES)}</dd></div>
-<div><dt>Industries</dt><dd>{len(INDUSTRIES)}</dd></div>
+<div><dt>Sectors</dt><dd>{len(INDUSTRIES)}</dd></div>
 </dl>"""
 
 # ---------------------------------------------------------------- Home
 home = f"""<section class="hero"><div class="wrap">
 <div>
-<h1 class="h-home">Writing and advisory for corporate communications</h1>
+<h1 class="h-home">Content development and advisory for corporate communications</h1>
 <p class="lede">Frisson Writing helps shape how listed companies across the Gulf present themselves to investors and stakeholders.</p>
 <p class="lede lede-2">It develops the narrative and key messages that carry through annual, integrated and sustainability reports, investor presentations, corporate profiles and leadership communications.</p>
 <div class="actions"><a class="btn solid" href="projects.html">View projects</a><a class="btn ghost" href="contact.html">Get in touch</a></div>
 </div>
-<aside class="panel" aria-label="Exchanges covered">
-<p class="panel-t">Exchanges covered</p>
+<aside class="panel" aria-label="Exchanges">
+<p class="panel-t">Experience with companies listed on</p>
 {exchanges_grid(counts=False)}
 </aside>
 </div></section>
 
-<div class="recog"><div class="wrap">
-<p>Projects recognised at</p>
-<ul>
-<li><img src="assets/badges/arc.png" alt="ARC Awards" width="120" height="60"><span>Grand Awards in 2025 and 2026</span></li>
-<li><img src="assets/badges/cfawards.png" alt="Corporate &amp; Financial Awards" width="100" height="50"><span>Gold in 2023 and 2025</span></li>
-</ul>
-</div></div>
+<section class="sec-recog"><div class="wrap">
+<div class="sec-head"><div><h2>Project recognitions</h2><p class="intro">Reports developed by Frisson Writing's founder have won at two leading international competitions for corporate reporting.</p></div><a class="more" href="projects.html#awards">Award highlights</a></div>
+{recognition_cards()}
+</div></section>
 
 <section><div class="wrap">
-<div class="sec-head"><div><h2>Track record</h2><p class="intro">{N} reports and documents for {N_COMPANIES} companies across a wide range of industries.</p></div><a class="more" href="projects.html">Full breakdown</a></div>
+<div class="sec-head"><div><h2>Track record</h2><p class="intro">{N} investor-facing reports for {N_LISTED} listed companies across a wide range of industries.</p></div><a class="more" href="projects.html">Full breakdown</a></div>
 {industries_grid()}
 </div></section>
 
 <section class="sec-paper"><div class="wrap split">
-<div class="stick"><h2>Services</h2><p class="intro">From full reports to investor and leadership messaging.</p><div class="actions"><a class="btn ghost" href="services.html">All services</a></div></div>
+<div class="stick"><h2>Services</h2><p class="intro">Annual, integrated, sustainability and governance reports, investor communications, leadership messaging and advisory.</p><div class="actions"><a class="btn ghost" href="services.html">All services</a></div></div>
 {accordion(SERVICES[:5])}
+</div></section>
+
+<section><div class="wrap">
+<div class="sec-head"><div><h2>Expertise</h2><p class="intro">Qualifications in finance and sustainable investing support every report.</p></div></div>
+<ul class="expertise">
+<li><img src="assets/badges/cfa.svg" alt=""><div><h3>Certificate in Sustainable Investing</h3><p>CFA Institute</p></div></li>
+<li><img src="assets/badges/fmva.svg" alt=""><div><h3>Financial Modelling and Valuation Analyst (FMVA)</h3><p>Corporate Finance Institute</p></div></li>
+<li><img src="assets/badges/arc.png" alt=""><div><h3>Awards judge</h3><p>ARC Awards and MEIRA Reporting Awards 2025</p></div></li>
+</ul>
 </div></section>
 
 <section class="sec-accent"><div class="wrap founder">
 {PORTRAIT}
 <div class="bio">
-<h2>About the founder</h2>
-<p>Mikhail Seleznev founded Frisson Writing in 2026 after five years in corporate and financial communications in London and Dubai.</p>
-<p>He has led content on more than 30 reports for listed and pre-IPO companies across the GCC and beyond, working closely with investor relations and other internal teams, with input from boards and senior executives.</p>
+<h2>About us</h2>
+<p>Mikhail Seleznev founded Frisson Writing in 2026 after six years at a leading corporate reporting agency in London and Dubai.</p>
+<p>He has led content development on more than 30 reports for listed and pre-IPO companies, working closely with investor relations and communication teams. His projects include the integrated report of du, one of the UAE's leading telecoms operators, and the annual report of Milaha, Qatar's leading maritime and logistics company.</p>
 <div class="actions"><a class="btn ghost" href="founder.html">Read more</a><a class="btn ghost" href="approach.html">How projects run</a></div>
 </div>
 </div></section>
@@ -373,10 +401,9 @@ services = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 <div>
 <ul class="list">{"".join(f"<li><h3>{e(t)}</h3><p>{e(d)}</p></li>" for t, d in COMP)}</ul>
 <div class="taggroups">
-<div><h3>Skills</h3><ul class="tags">{"".join(f"<li>{t}</li>" for t in ["Messaging", "Narrative development", "Executive interviewing", "Copywriting", "Copyediting", "Benchmarking", "Materiality assessment", "Data verification"])}</ul>
+<div><h3>Skills</h3><ul class="tags">{"".join(f"<li>{t}</li>" for t in ["Messaging", "Narrative development", "Executive interviewing", "Copywriting", "Copyediting", "Benchmarking", "Materiality assessment", "Data verification"])}</ul></div>
 <div><h3>Frameworks</h3><ul class="tags">{"".join(f"<li>{t}</li>" for t in ["GRI", "SASB", "UN SDGs", "IFRS S1", "IFRS S2", "Integrated reporting", "GCC listing rules"])}</ul></div>
-<div><h3>Exchanges</h3><ul class="tags">{"".join(f"<li>{EXCHANGES[k][0]}</li>" for k in GCC + ["moex"])}</ul></div></div>
-</div>
+</div></div>
 </div>
 </div></section>
 {CTA}"""
@@ -438,8 +465,18 @@ FILTER_JS = """<script>
 </script>"""
 
 
+AWARDED = sorted([p for p in PROJECTS if p[5]], key=lambda p: (-int(p[0]), -len(p[5])))
+
+
+def award_item(p):
+    year, kind, ind, cap, exch, awards, _ = p
+    listing = listing_label(exch)
+    return (f'<li>{icon(ind)}<div><h3>{e(kind)} {year}</h3><p>{e(INDUSTRIES[ind][0])}<br><span class="muted-sm">{e(listing)}</span></p>'
+            '<div class="awards">' + "".join(award_pill(a) for a in awards) + "</div></div></li>")
+
+
 projects = f"""<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
-<div><h1>Projects</h1><p class="lede">{N} reports and documents for {N_COMPANIES} companies across a wide range of industries: {type_line()}. Client names are withheld.</p></div>
+<div><h1>Projects</h1><p class="lede">{N} investor-facing reports for {N_LISTED} listed companies across a wide range of industries: {type_line()}.</p></div>
 </div></section>
 
 <section class="sec-paper"><div class="wrap">
@@ -452,7 +489,7 @@ projects = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 </div></section>
 
 <section class="sec-oat"><div class="wrap">
-<div class="sec-head"><h2>By industry</h2></div>
+<div class="sec-head"><div><h2>By industry</h2><p class="intro">Grouped by GICS sector.</p></div></div>
 {industries_grid()}
 </div></section>
 
@@ -461,20 +498,14 @@ projects = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 {exchanges_grid()}
 </div></section>
 
-<section class="sec-paper"><div class="wrap">
-<div class="sec-head"><h2>All projects</h2></div>
-{FILTERS}
-<div class="table-wrap"><table class="ptable">
-<thead><tr><th scope="col">Year</th><th scope="col">Document</th><th scope="col">Industry</th><th scope="col">Listing</th><th scope="col">Size</th><th scope="col">Notes</th></tr></thead>
-<tbody>{"".join(project_row(p) for p in PROJECTS)}</tbody>
-</table></div>
-<p class="pf-empty" hidden>No projects match these filters.</p>
-<p class="disclaimer">Awards were made to the reports and to the full teams that produced them.</p>
+<section class="sec-paper" id="awards"><div class="wrap split">
+<div class="stick"><h2>Award highlights</h2><p class="intro">Every report in the portfolio that won at the ARC Awards or the Corporate &amp; Financial Awards.</p></div>
+<div><ul class="awardlist">{"".join(award_item(p) for p in AWARDED)}</ul>
+<p class="disclaimer">Awards were made to the reports and to the full teams that produced them.</p></div>
 </div></section>
-{FILTER_JS}
 {CTA}"""
 page("projects.html", "Projects | Frisson Writing",
-     f"{N} reports and documents for {N_COMPANIES} companies across {len(EXCHANGES)} exchanges and {len(INDUSTRIES)} industries.", projects)
+     f"{N} investor-facing reports for {N_LISTED} listed companies across {len(EXCHANGES)} exchanges and {len(INDUSTRIES)} sectors.", projects)
 
 # ---------------------------------------------------------------- Approach
 STAGES = [
@@ -487,18 +518,8 @@ STAGES = [
     ("Revisions", "The draft refined through structured rounds of client feedback."),
     ("Design support", "Support for the designers as they apply client comments, with advice on photography that fits the narrative."),
 ]
-AWARDED = [p for p in PROJECTS if p[5]]
-
-
-def award_item(p):
-    year, kind, ind, cap, exch, awards, _ = p
-    listing = listing_label(exch)
-    return (f'<li>{icon(ind)}<div><h3>{e(kind)} {year}</h3><p>{e(INDUSTRIES[ind][0])}<br><span class="muted-sm">{e(listing)}</span></p>'
-            '<div class="awards">' + "".join(award_pill(a) for a in awards) + "</div></div></li>")
-
-
 approach = f"""<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
-<div><h1>Approach</h1><p class="lede">Frisson Writing stays involved from the first advisory call until the designers close the file.</p></div>
+<div><h1>Approach</h1><p class="lede">Frisson Writing stays involved from the first advisory call until official publication.</p></div>
 </div></section>
 
 <section class="sec-paper"><div class="wrap split">
@@ -523,8 +544,9 @@ founder = f"""<section class="hero"><div class="wrap founder">
 {PORTRAIT}
 <div class="bio">
 <h1 style="margin-bottom:24px">Mikhail Seleznev</h1>
-<p>Before founding Frisson Writing in 2026, Mikhail spent five years at Fanda in London and Dubai, leading content on annual and sustainability reports for companies listed in the GCC and internationally.</p>
-<p>His work brings together financial analysis, sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives, and those conversations shape every narrative he builds.</p>
+<p>Before founding Frisson Writing in 2026, Mikhail spent six years at a leading corporate reporting agency in London and Dubai, leading content development on annual and sustainability reports for companies listed in the GCC and internationally.</p>
+<p>His work brings together financial analysis, sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives, and those conversations shape every narrative he builds. His projects include the integrated report of du and the annual report of Milaha, Qatar's leading maritime and logistics company.</p>
+<p>He also speaks at industry events, leading workshops and panels at MEIRA conferences and chapter meetings, and has judged the ARC Awards and the MEIRA Reporting Awards.</p>
 </div>
 </div></section>
 
@@ -534,17 +556,22 @@ founder = f"""<section class="hero"><div class="wrap founder">
 <dl class="facts" style="margin-top:0">
 <div class="cred"><dt><img src="assets/badges/fmva.svg" alt="" width="44" height="44">Financial Modelling and Valuation Analyst (FMVA)</dt><dd>Corporate Finance Institute, 2025</dd></div>
 <div class="cred"><dt><img src="assets/badges/cfa.svg" alt="" width="44" height="44">Certificate in Sustainable Investing</dt><dd>CFA Institute, 2021</dd></div>
-<div><dt>BA in History</dt><dd>Durham University, UK, 2020</dd></div>
-<div><dt>Corporate Reporting Consultant</dt><dd>Fanda, London and Dubai, 2020 to 2026</dd></div>
+<div class="cred"><dt><img src="assets/badges/durham.svg" alt="" width="60" height="25">BA in History</dt><dd>Durham University, UK, 2020</dd></div>
+<div><dt>Corporate Reporting Consultant</dt><dd>Leading corporate reporting agency, London and Dubai, 2020 to 2026</dd></div>
 <div class="cred"><dt><img src="assets/badges/arc.png" alt="" width="60" height="30">Awards judging</dt><dd>ARC Awards 2025 and MEIRA Reporting Awards 2025</dd></div>
 <div><dt>Speaking</dt><dd>Workshops and panels at MEIRA conferences and chapter meetings</dd></div>
 </dl>
 <div class="actions"><a class="btn ghost" href="services.html#competencies">View competencies</a></div>
 </div>
 </div></section>
+
+<section><div class="wrap split">
+<div class="stick"><h2>Exchanges</h2><p class="intro">Experience with companies listed on these exchanges.</p></div>
+<div>{exchanges_grid(counts=False, keys=GCC + ["moex"])}</div>
+</div></section>
 {CTA}"""
 page("founder.html", "Founder | Frisson Writing",
-     "Mikhail Seleznev founded Frisson Writing after five years in corporate and financial communications across the Gulf.", founder)
+     "Mikhail Seleznev founded Frisson Writing after six years in corporate reporting in London and Dubai.", founder)
 
 # ---------------------------------------------------------------- Contact
 contact = f"""<section class="hero" style="min-height:62vh"><div class="wrap" style="grid-template-columns:1fr">
