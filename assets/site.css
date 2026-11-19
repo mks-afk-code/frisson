@@ -5,6 +5,11 @@
 @font-face { font-family: "Inter"; src: url("fonts/inter-Medium.woff") format("woff"); font-weight: 500; font-display: swap; }
 
 :root {
+  --accent: #47685C;
+  --accent-deep: #2F483F;
+  --accent-mid: #8FA89D;
+  --tint: #DCE6E1;
+  --tint-2: #EAF0EC;
   --linen: #F3EDE2;
   --paper: #FAF6EF;
   --oat: #E8DECD;
@@ -352,3 +357,69 @@ a.card:hover .frame { transform: translateY(-4px); box-shadow: 0 20px 34px -20px
   .pf select { width: 100%; }
   .pf-count { margin-left: 0; flex-basis: 100%; }
 }
+
+/* Eucalyptus accent theme */
+.btn.solid{background:var(--accent);border-color:var(--accent)}
+.btn.ghost{border-color:var(--accent);color:var(--accent)}
+.pill{background:var(--accent)}
+a{text-decoration-color:var(--accent)}
+.more{color:var(--accent)}
+.nav a[aria-current="page"]:not(.pill){text-decoration-color:var(--accent);color:var(--accent)}
+/* tinted sections */
+.sec-paper{background:var(--tint-2)}
+.sec-oat{background:var(--tint)}
+.recog{background:var(--tint-2);border-color:var(--accent-mid)}
+.panel{background:var(--tint)}
+.exch{background:var(--accent-mid);border-color:var(--accent-mid)}
+.exch li{background:#FAF6EF}
+/* icons filled */
+.inds li{background:#FAF6EF;border:1px solid var(--tint)}
+.inds .ico,.awardlist .ico{background:var(--accent);stroke:#FAF6EF}
+.ico.sm{stroke:var(--accent)}
+.inds .n{color:var(--accent)}
+/* awards */
+.award{background:var(--accent)}
+.award.short{background:var(--tint);border-color:var(--tint);color:var(--accent-deep)}
+.award.short::before{background:var(--accent)}
+.award::before{background:var(--tint)}
+/* dark bands */
+.cta,.site-foot{background:var(--accent-deep)}
+.site-foot .wrap{border-color:rgba(255,255,255,.18)}
+/* founder teaser band */
+.sec-accent{background:var(--accent);color:#FAF6EF}
+.sec-accent .bio p{color:#F1F4EF}
+.sec-accent .btn.ghost{border-color:#FAF6EF;color:#FAF6EF}
+/* accordion */
+.acc{border-color:var(--accent-mid)}.acc details{border-color:var(--accent-mid)}
+.acc details[open] summary{color:var(--accent)}
+.acc summary .tag{background:var(--tint);color:var(--accent-deep);padding:3px 10px;border-radius:99px}
+.acc summary::after{background:linear-gradient(var(--accent),var(--accent)) center/100% 1.5px no-repeat,linear-gradient(var(--accent),var(--accent)) center/1.5px 100% no-repeat}
+/* timeline */
+.timeline::before{background:var(--accent-mid)}
+.timeline li::before{background:var(--accent);border-color:var(--accent);color:#FAF6EF}
+/* lists and tags */
+.list{border-color:var(--accent-mid)}.list li{border-color:var(--accent-mid)}
+.list li h3{color:var(--accent-deep)}
+.tags li{border-color:var(--accent);background:#FAF6EF}
+.taggroups h3{color:var(--accent)}
+/* projects */
+.figs div{border-top:3px solid var(--accent)}
+.figs dd{color:var(--accent)}
+.capbar .large,.caplegend .large{background:var(--accent-deep)}
+.capbar .mid,.caplegend .mid{background:var(--accent)}
+.capbar .small,.caplegend .small{background:var(--accent-mid)}
+.capbar .private,.caplegend .private{background:var(--tint)}
+.caplegend b{color:var(--accent)}
+.exch .meta b{color:var(--accent)}
+.ptable thead th{background:var(--tint);padding:12px 16px 12px 12px;border-bottom:0}
+.ptable td:first-child{padding-left:12px}
+.ptable td{border-color:var(--tint)}
+.status{background:var(--tint);color:var(--accent-deep)}
+.pf select{border-color:var(--accent-mid);background-color:#FAF6EF}
+.pf-check input{accent-color:var(--accent)}
+/* founder page */
+.facts div{border-color:var(--accent-mid)}
+.contact-list div{border-color:var(--accent-mid)}
+.mail{text-decoration-color:var(--accent)}
+
+.sec-paper .timeline li::before { background: var(--accent); }

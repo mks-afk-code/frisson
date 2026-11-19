@@ -337,7 +337,7 @@ home = f"""<section class="hero"><div class="wrap">
 {accordion(SERVICES[:5])}
 </div></section>
 
-<section><div class="wrap founder">
+<section class="sec-accent"><div class="wrap founder">
 {PORTRAIT}
 <div class="bio">
 <h2>About the founder</h2>
