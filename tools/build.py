@@ -370,7 +370,7 @@ home = f"""<section class="hero"><div class="wrap">
 <div class="bio">
 <h2>About us</h2>
 <p>Mikhail Seleznev founded Frisson Writing in 2026 after six years at a leading corporate reporting agency in London and Dubai.</p>
-<p>He has led content development on more than 30 reports for listed and pre-IPO companies, working closely with investor relations and communication teams. His projects include the integrated report of du, one of the UAE's leading telecoms operators, and the annual report of Milaha, Qatar's leading maritime and logistics company.</p>
+<p>He has led content development on more than 30 reports for listed and pre-IPO companies, working closely with investor relations and communication teams.</p>
 <div class="actions"><a class="btn ghost" href="founder.html">Read more</a><a class="btn ghost" href="approach.html">How projects run</a></div>
 </div>
 </div></section>
@@ -545,7 +545,7 @@ founder = f"""<section class="hero"><div class="wrap founder">
 <div class="bio">
 <h1 style="margin-bottom:24px">Mikhail Seleznev</h1>
 <p>Before founding Frisson Writing in 2026, Mikhail spent six years at a leading corporate reporting agency in London and Dubai, leading content development on annual and sustainability reports for companies listed in the GCC and internationally.</p>
-<p>His work brings together financial analysis, sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives, and those conversations shape every narrative he builds. His projects include the integrated report of du and the annual report of Milaha, Qatar's leading maritime and logistics company.</p>
+<p>His work brings together financial analysis, sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives, and those conversations shape every narrative he builds.</p>
 <p>He also speaks at industry events, leading workshops and panels at MEIRA conferences and chapter meetings, and has judged the ARC Awards and the MEIRA Reporting Awards.</p>
 </div>
 </div></section>

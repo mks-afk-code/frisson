@@ -5,13 +5,14 @@
 @font-face { font-family: "Inter"; src: url("fonts/inter-Medium.woff") format("woff"); font-weight: 500; font-display: swap; }
 
 :root {
-  --accent: #47685C;
-  --accent-deep: #2F483F;
-  --accent-mid: #8FA89D;
-  --tint: #DCE6E1;
-  --tint-2: #EAF0EC;
-  --linen: #F3EDE2;
-  --paper: #FAF6EF;
+  --accent: #2E4A3E;
+  --accent-deep: #213429;
+  --accent-mid: #8C9A8F;
+  --tint: #EAE2D4;
+  --tint-2: #FAF7F1;
+  --line: #E4D9C7;
+  --linen: #F2EDE3;
+  --paper: #FAF7F1;
   --oat: #E8DECD;
   --sand: #D5C4A8;
   --camel: #A88C66;
@@ -71,7 +72,7 @@ h3 { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; line-height
 .more { font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
 
 /* Sections */
-section { padding: clamp(64px, 9vw, 120px) 0; }
+section { padding: clamp(80px, 11vw, 148px) 0; }
 .sec-paper { background: var(--paper); }
 .sec-oat { background: var(--oat); }
 .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px 32px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 48px); }
@@ -449,3 +450,24 @@ a{text-decoration-color:var(--accent)}
 .hero h1.h-home { font-size: clamp(2.1rem, 3.7vw, 3.1rem); max-width: 15em; }
 .exch.flat { background: none; border: 0; gap: 12px; border-radius: 0; overflow: visible; }
 .exch.flat li { border: 1px solid var(--tint); border-radius: 12px; }
+
+/* Warm neutral palette: ivory base, cream cards, deep green accents */
+.sec-paper { background: var(--paper); }
+.sec-oat, .sec-recog, .recog { background: var(--linen); }
+.recog { border-color: var(--line); }
+.panel { background: var(--paper); border: 1px solid var(--line); }
+.exch { background: var(--line); border-color: var(--line); }
+.exch li { background: var(--paper); }
+.sec-paper .exch li { background: var(--linen); }
+.inds li, .recard, .expertise li { background: var(--paper); border-color: var(--line); }
+.sec-paper .inds li, .sec-paper .recard, .sec-paper .expertise li { background: var(--linen); }
+.chips li { background: var(--linen); }
+.tags li { border-color: var(--sand); background: transparent; }
+.acc, .acc details, .list, .list li, .facts div, .contact-list div, .awardlist, .awardlist li { border-color: var(--line); }
+/* Green reserved for the three largest sectors; the rest stay neutral */
+.inds li:nth-child(n+4) .ico { background: var(--tint); stroke: var(--espresso); }
+.awardlist .ico { background: var(--tint); stroke: var(--espresso); }
+.award.short { background: var(--tint); border-color: var(--tint); }
+.award.short::before { background: var(--accent); }
+.timeline::before { background: var(--sand); }
+.capbar .private, .caplegend .private { background: var(--sand); }
