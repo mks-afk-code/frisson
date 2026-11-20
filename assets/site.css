@@ -471,3 +471,6 @@ a{text-decoration-color:var(--accent)}
 .award.short::before { background: var(--accent); }
 .timeline::before { background: var(--sand); }
 .capbar .private, .caplegend .private { background: var(--sand); }
+
+.portrait { aspect-ratio: 4 / 5; }
+.portrait img { object-position: 50% 30%; }

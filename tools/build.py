@@ -318,7 +318,7 @@ def accordion(items, open_first=True):
     return out + "</div>"
 
 
-PORTRAIT = '<figure><div class="portrait"><img src="assets/founder.jpg" width="299" height="299" alt="Mikhail Seleznev"></div></figure>'
+PORTRAIT = '<figure><div class="portrait"><img src="assets/founder.jpg" width="800" height="1000" alt="Mikhail Seleznev"></div></figure>'
 
 FIGURES = f"""<dl class="figs">
 <div><dt>Reports</dt><dd>{N}</dd></div>
