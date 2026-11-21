@@ -8,6 +8,8 @@ from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EMAIL = "mikhail@frissonwriting.com"
+LINKEDIN = "https://www.linkedin.com/in/mikhail-seleznev-279470176"
+PROFILE_PDF = "assets/frisson-writing-profile.pdf"
 e = html.escape
 
 # Report types
@@ -273,6 +275,7 @@ def page(fname, title, desc, body):
 <footer class="site-foot"><div class="wrap">
 <img src="assets/logo-light.svg" alt="Frisson Writing" width="180" height="60">
 <nav aria-label="Footer">{foot}</nav>
+<span class="foot-links"><a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a><a href="{PROFILE_PDF}" download>Profile (PDF)</a></span>
 <span>Frisson Writing LLC, licensed by Shams Free Zone, Sharjah. Based in Dubai.</span>
 </div></footer>
 <script>
@@ -333,7 +336,7 @@ home = f"""<section class="hero"><div class="wrap">
 <h1 class="h-home">Content development and advisory for corporate communications</h1>
 <p class="lede">Frisson Writing helps shape how listed companies across the Gulf present themselves to investors and stakeholders.</p>
 <p class="lede lede-2">It develops the narrative and key messages that carry through annual, integrated and sustainability reports, investor presentations, corporate profiles and leadership communications.</p>
-<div class="actions"><a class="btn solid" href="projects.html">View projects</a><a class="btn ghost" href="contact.html">Get in touch</a></div>
+<div class="actions"><a class="btn solid" href="projects.html">View projects</a><a class="btn ghost" href="{PROFILE_PDF}" download>Download profile (PDF)</a></div>
 </div>
 <aside class="panel" aria-label="Exchanges">
 <p class="panel-t">Experience with companies listed on</p>
@@ -371,7 +374,7 @@ home = f"""<section class="hero"><div class="wrap">
 <h2>About us</h2>
 <p>Mikhail Seleznev founded Frisson Writing in 2026 after six years at a leading corporate reporting agency in London and Dubai.</p>
 <p>He has led content development on more than 30 reports for listed and pre-IPO companies, working closely with investor relations and communication teams.</p>
-<div class="actions"><a class="btn ghost" href="founder.html">Read more</a><a class="btn ghost" href="approach.html">How projects run</a></div>
+<div class="actions"><a class="btn ghost" href="founder.html">Read more</a><a class="btn ghost" href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a></div>
 </div>
 </div></section>
 {CTA}"""
@@ -468,12 +471,42 @@ FILTER_JS = """<script>
 AWARDED = sorted([p for p in PROJECTS if p[5]], key=lambda p: (-sum(a.startswith(('Grand', 'Gold')) for a in p[5]), listing_label(p[4])))
 
 
-def award_item(p):
-    year, kind, ind, cap, exch, awards, _ = p
-    listing = listing_label(exch)
-    clean = [re.sub(r"\s+20\d\d$", "", a) for a in awards]
-    return (f'<li><div><h3>{e(listing)}</h3>'
-            '<div class="awards">' + "".join(award_pill(a) for a in clean) + "</div></div></li>")
+LEVELS = ["Grand Award", "Gold", "Silver", "Bronze", "Honors"]
+COMPS = [("ARC Awards", "ARC Awards"), ("Corporate & Financial", "Corporate &amp; Financial Awards")]
+EXCH_KEY = {}
+
+
+def award_groups():
+    groups = {}
+    for p in PROJECTS:
+        if not p[5]:
+            continue
+        label = listing_label(p[4])
+        EXCH_KEY.setdefault(label, p[4][0] if len(p[4]) == 1 and p[4][0] not in OTHER else None)
+        g = groups.setdefault(label, {})
+        for a in p[5]:
+            comp = next(c for c, _ in COMPS if c in a)
+            for lvl in a.split(",")[0].split(" and "):
+                g.setdefault(comp, {}).setdefault(lvl.strip(), 0)
+                g[comp][lvl.strip()] += 1
+    def weight(g):
+        return tuple(-sum(g.get(c, {}).get(l, 0) for c, _ in COMPS) for l in LEVELS)
+    return sorted(groups.items(), key=lambda kv: (weight(kv[1]), kv[0]))
+
+
+def award_cards():
+    out = '<div class="agrid">'
+    for label, g in award_groups():
+        key = EXCH_KEY.get(label)
+        head = (f'<div class="alogo">{exch_logo(key)}</div>' if key else '<div class="alogo"><span class="xword">' + e(label) + '</span></div>')
+        rows = ""
+        for comp, name in COMPS:
+            if comp not in g:
+                continue
+            chips = "".join(f'<li class="lv-{l.split()[0].lower()}"><b>{g[comp][l]}</b>{l}</li>' for l in LEVELS if l in g[comp])
+            rows += f'<div class="arow"><p>{name}</p><ul class="chips">{chips}</ul></div>'
+        out += f'<article class="acard"><h3 class="sr">{e(label)}</h3>{head}{rows}</article>'
+    return out + "</div>"
 
 
 projects = f"""<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
@@ -500,8 +533,8 @@ projects = f"""<section class="hero"><div class="wrap" style="grid-template-colu
 </div></section>
 
 <section class="sec-paper" id="awards"><div class="wrap split">
-<div class="stick"><h2>Award highlights</h2><p class="intro">Every report in the portfolio that won at the ARC Awards or the Corporate &amp; Financial Awards.</p></div>
-<div><ul class="awardlist">{"".join(award_item(p) for p in AWARDED)}</ul>
+<div class="stick"><h2>Award highlights</h2><p class="intro">Awards won by reports in the portfolio, grouped by the exchange where each company is listed.</p></div>
+<div>{award_cards()}
 <p class="disclaimer">Awards were made to the reports and to the full teams that produced them.</p></div>
 </div></section>
 {CTA}"""
@@ -562,7 +595,7 @@ founder = f"""<section class="hero"><div class="wrap founder">
 <div class="cred"><dt><img src="assets/badges/arc.png" alt="" width="60" height="30">Awards judging</dt><dd>ARC Awards 2025 and MEIRA Reporting Awards 2025</dd></div>
 <div><dt>Speaking</dt><dd>Workshops and panels at MEIRA conferences and chapter meetings</dd></div>
 </dl>
-<div class="actions"><a class="btn ghost" href="services.html#competencies">View competencies</a></div>
+<div class="actions"><a class="btn ghost" href="services.html#competencies">View competencies</a><a class="btn ghost" href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn profile</a></div>
 </div>
 </div></section>
 
@@ -579,6 +612,7 @@ contact = f"""<section class="hero" style="min-height:62vh"><div class="wrap" st
 <div>
 <h1 style="margin-bottom:32px">Discuss your next project</h1>
 <a class="mail" href="mailto:{EMAIL}">{EMAIL}</a>
+<div class="actions"><a class="btn solid" href="{LINKEDIN}" target="_blank" rel="noopener">Connect on LinkedIn</a><a class="btn ghost" href="{PROFILE_PDF}" download>Download profile (PDF)</a></div>
 <dl class="contact-list">
 <div><dt>Helpful to include</dt><dd>The document type, the deadline and where the content stands today.</dd></div>
 <div><dt>Location</dt><dd>Dubai, United Arab Emirates. Available on site across the Gulf.</dd></div>

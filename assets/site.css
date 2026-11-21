@@ -477,3 +477,17 @@ a{text-decoration-color:var(--accent)}
 
 .awardlist li { grid-template-columns: 1fr; padding: 20px 0; }
 .awardlist h3 { margin-bottom: 10px; }
+
+/* Award highlights grouped by exchange */
+.agrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.acard { background: var(--linen); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 16px; }
+.alogo { height: 48px; display: flex; align-items: center; }
+.alogo img { max-height: 44px; max-width: 170px; width: auto; }
+.alogo .xword { font-family: var(--serif); font-size: 1.05rem; text-align: left; color: var(--espresso); }
+.arow p { font-size: 0.82rem; color: var(--bark); margin-bottom: 8px; }
+.acard .chips { gap: 8px; }
+.acard .chips li { padding: 7px 12px; background: var(--paper); border: 1px solid var(--line); font-size: 0.86rem; }
+.acard .chips b { font-size: 1.3rem; }
+.acard .chips li.lv-grand, .acard .chips li.lv-gold { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.foot-links { display: flex; gap: 22px; }
+@media (max-width: 900px) { .agrid { grid-template-columns: 1fr; } }
