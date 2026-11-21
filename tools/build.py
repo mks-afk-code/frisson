@@ -3,7 +3,7 @@
 Edit the copy and the PROJECTS list below, then run this script to regenerate the pages.
 Client names are deliberately left out of the published site.
 """
-import html, os
+import html, os, re
 from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -298,9 +298,9 @@ SERVICES = [
     ("Annual and integrated reports", "Reporting", [
         "Annual and integrated reports developed around one consistent narrative and set of key messages, covering all operational, financial and other relevant disclosures."]),
     ("Sustainability reports", "Reporting", [
-        "People-focused sustainability reports developed in line with ESG rating requirements, disclosure rules and international frameworks such as GRI, SASB, the UN SDGs and IFRS S1 and S2."]),
+        "Sustainability reports developed in line with ESG rating requirements, disclosure rules and international frameworks such as GRI, SASB, the UN SDGs and IFRS S1 and S2."]),
     ("Governance reports", "Reporting", [
-        "Governance reports developed in line with regional and international best practice and local listing rules."]),
+        "Governance reports aligned with local listing rules as well as regional and international best practice."]),
     ("Investor communications", "Communications", [
         "Presentations, equity story development and FAQs that keep the company's message to the market consistent."]),
     ("Leadership messaging and profiles", "Communications", [
@@ -465,18 +465,19 @@ FILTER_JS = """<script>
 </script>"""
 
 
-AWARDED = sorted([p for p in PROJECTS if p[5]], key=lambda p: (-int(p[0]), -len(p[5])))
+AWARDED = sorted([p for p in PROJECTS if p[5]], key=lambda p: (-sum(a.startswith(('Grand', 'Gold')) for a in p[5]), listing_label(p[4])))
 
 
 def award_item(p):
     year, kind, ind, cap, exch, awards, _ = p
     listing = listing_label(exch)
-    return (f'<li>{icon(ind)}<div><h3>{e(kind)} {year}</h3><p>{e(INDUSTRIES[ind][0])}<br><span class="muted-sm">{e(listing)}</span></p>'
-            '<div class="awards">' + "".join(award_pill(a) for a in awards) + "</div></div></li>")
+    clean = [re.sub(r"\s+20\d\d$", "", a) for a in awards]
+    return (f'<li><div><h3>{e(listing)}</h3>'
+            '<div class="awards">' + "".join(award_pill(a) for a in clean) + "</div></div></li>")
 
 
 projects = f"""<section class="hero"><div class="wrap" style="grid-template-columns:1fr">
-<div><h1>Projects</h1><p class="lede">{N} investor-facing reports for {N_LISTED} listed companies across a wide range of industries: {type_line()}.</p></div>
+<div><h1>Projects</h1><p class="lede">Investor-facing reports for listed companies across the Gulf and international markets, from first reports after listing to award-winning annual, integrated and sustainability reports.</p></div>
 </div></section>
 
 <section class="sec-paper"><div class="wrap">

@@ -465,7 +465,7 @@ a{text-decoration-color:var(--accent)}
 .tags li { border-color: var(--sand); background: transparent; }
 .acc, .acc details, .list, .list li, .facts div, .contact-list div, .awardlist, .awardlist li { border-color: var(--line); }
 /* Green reserved for the three largest sectors; the rest stay neutral */
-.inds li:nth-child(n+4) .ico { background: var(--tint); stroke: var(--espresso); }
+.inds .ico { background: var(--tint); stroke: var(--espresso); }
 .awardlist .ico { background: var(--tint); stroke: var(--espresso); }
 .award.short { background: var(--tint); border-color: var(--tint); }
 .award.short::before { background: var(--accent); }
@@ -474,3 +474,6 @@ a{text-decoration-color:var(--accent)}
 
 .portrait { aspect-ratio: 4 / 5; }
 .portrait img { object-position: 50% 30%; }
+
+.awardlist li { grid-template-columns: 1fr; padding: 20px 0; }
+.awardlist h3 { margin-bottom: 10px; }
