@@ -50,7 +50,7 @@ h2{{font-family:Lora;font-weight:400;font-size:13pt;margin-bottom:3mm}}
 .about{{padding:6mm 14mm 5mm;display:grid;grid-template-columns:26mm 1fr;gap:7mm;align-items:start}}
 .about img{{width:26mm;height:32.5mm;object-fit:cover;border-radius:2.5mm}}
 .about p{{color:#3d3127;margin-bottom:2mm}}
-.ex{{padding:0 14mm 5mm;display:flex;align-items:center;justify-content:space-between;gap:4mm}}
+.ex{{padding:0 14mm 5mm}}.ex p{{margin:0 0 2.5mm;font-family:Lora;font-size:11pt;color:var(--espresso,#2B2118)}}.exrow{{display:flex;align-items:center;justify-content:space-between;gap:4mm}}
 .ex img{{height:8mm;max-width:24mm;object-fit:contain}}
 .foot{{margin-top:auto;background:#2E4A3E;color:#FAF7F1;padding:6mm 14mm;display:flex;justify-content:space-between;align-items:center}}
 .foot img{{height:12mm}}
@@ -71,7 +71,7 @@ h2{{font-family:Lora;font-weight:400;font-size:13pt;margin-bottom:3mm}}
 <div class="about"><img src="{A}founder.jpg"><div><h2>About us</h2>
 <p>Mikhail Seleznev founded Frisson Writing in 2026 after six years at a leading corporate reporting agency in London and Dubai. He has led content development on more than 30 reports for listed and pre-IPO companies, working closely with investor relations and communication teams.</p>
 <p>He has interviewed more than 40 board members and senior executives, speaks at MEIRA conferences and holds a BA in History from Durham University, UK.</p></div></div>
-<div class="ex">{exch}</div>
+<div class="ex"><p>Experience with companies listed on</p><div class="exrow">{exch}</div></div>
 <div class="foot"><img src="{A}logo-light.svg"><div><a href="mailto:{b.EMAIL}">{b.EMAIL}</a><br><a href="https://frissonwriting.com">frissonwriting.com</a> &nbsp;·&nbsp; <a href="{b.LINKEDIN}">LinkedIn</a><br>Dubai, United Arab Emirates</div></div>
 </body></html>"""
 open(os.path.join(ROOT, "tools", "brochure.html"), "w").write(html)
