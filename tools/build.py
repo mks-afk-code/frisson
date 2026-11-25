@@ -332,7 +332,7 @@ FIGURES = f"""<dl class="figs">
 
 # ---------------------------------------------------------------- Home
 BIO = [
-    "Mikhail Seleznev is the founder of Frisson Writing. He set up the company in 2026 after six years at a leading corporate reporting agency while based in London and Dubai. Across annual, integrated and sustainability reports, investor presentations and leadership communications, he helps listed companies decide what to emphasise and which facts and examples make the point most clearly.",
+    "Mikhail Seleznev is the founder of Frisson Writing. He set up the company in 2026 after six years at a leading corporate reporting agency while based in London and Dubai. He helps listed companies decide what to emphasise in their investor-facing communications and which facts and examples make the point most clearly.",
     "His work involves interviewing senior executives and working closely with investor relations, sustainability and communications teams. This gives him a feel for the culture of each business and the language that sounds natural to the people who run it.",
     "His background spans financial modelling, valuation and sustainability reporting. That combination helps him explain what drives a company's results and connect its financial performance with its operations and sustainability priorities.",
 ]
