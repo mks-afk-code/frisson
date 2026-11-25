@@ -331,17 +331,48 @@ FIGURES = f"""<dl class="figs">
 </dl>"""
 
 # ---------------------------------------------------------------- Home
-home = f"""<section class="hero"><div class="wrap">
-<div>
+BIO = [
+    "Mikhail Seleznev is the founder of Frisson Writing. He set up the company in 2026 after six years at a leading corporate reporting agency in London and Dubai, where he led content development on annual and sustainability reports for companies listed in the GCC and internationally.",
+    "His work brings together financial analysis, sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives, and those conversations shape every narrative he builds.",
+]
+
+TILES = [
+    ("services.html", "Services", "View services",
+     "Reports, investor communications and leadership messaging built around one consistent narrative.",
+     ["Annual and integrated reports", "Sustainability reports", "Governance reports", "Investor communications", "Advisory"]),
+    ("projects.html", "Projects", "View projects",
+     f"{N} investor-facing reports for {N_LISTED} listed companies, including award-winning work.",
+     [f"{len(INDUSTRIES)} sectors", f"{len(EXCHANGES)} exchanges", "ARC Awards", "Corporate &amp; Financial Awards"]),
+    ("approach.html", "Approach", "View approach",
+     "Involved from the first advisory call until official publication, with one writer at every stage.",
+     ["Consultancy", "Structure", "Interviews", "Drafting", "Design support"]),
+    ("founder.html", "Founder", "Meet the founder",
+     "Mikhail Seleznev brings six years of corporate reporting experience in London and Dubai.",
+     ["FMVA", "CFA Sustainable Investing", "Awards judge"]),
+]
+
+
+def tiles():
+    out = '<nav class="tiles" aria-label="Explore Frisson Writing">'
+    for href, t, go, d, tags in TILES:
+        face = '<img class="t-face" src="assets/founder.jpg" alt="" width="56" height="56">' if href == "founder.html" else ""
+        out += (f'<a class="tile" href="{href}"><div class="t-top"><h2>{t}</h2>{face}</div><p>{d}</p>'
+                f'<ul class="t-tags">' + "".join(f"<li>{x}</li>" for x in tags) + f'</ul><span class="t-go">{go}</span></a>')
+    return out + "</nav>"
+
+
+home = f"""<section class="hero hero-home"><div class="wrap">
 <h1 class="h-home">Content development and advisory for corporate communications</h1>
-<p class="lede">Frisson Writing helps shape how listed companies across the Gulf present themselves to investors and stakeholders.</p>
-<p class="lede lede-2">It develops the narrative and key messages that carry through annual, integrated and sustainability reports, investor presentations, corporate profiles and leadership communications.</p>
-<div class="actions"><a class="btn solid" href="projects.html">View projects</a><a class="btn ghost" href="{PROFILE_PDF}" download>Download profile (PDF)</a></div>
+<div class="hero-row">
+<p class="lede">Frisson Writing helps listed companies across the Gulf shape how they present themselves to investors and stakeholders, developing the narrative and key messages behind their reports, presentations and leadership communications.</p>
+<div class="actions"><a class="btn solid" href="contact.html">Get in touch</a><a class="btn ghost" href="{PROFILE_PDF}" download>Download profile (PDF)</a></div>
 </div>
-<aside class="panel" aria-label="Exchanges">
-<p class="panel-t">Experience with companies listed on</p>
-{exchanges_grid(counts=False)}
-</aside>
+{tiles()}
+</div></section>
+
+<section class="sec-ex"><div class="wrap exstrip">
+<p>Experience with companies listed on</p>
+{exchanges_grid(counts=False, keys=GCC)}
 </div></section>
 
 <section class="sec-recog"><div class="wrap">
@@ -349,31 +380,11 @@ home = f"""<section class="hero"><div class="wrap">
 {recognition_cards()}
 </div></section>
 
-<section><div class="wrap">
-<div class="sec-head"><div><h2>Track record</h2><p class="intro">{N} investor-facing reports for {N_LISTED} listed companies across a wide range of industries.</p></div><a class="more" href="projects.html">Full breakdown</a></div>
-{industries_grid()}
-</div></section>
-
-<section class="sec-paper"><div class="wrap split">
-<div class="stick"><h2>Services</h2><p class="intro">Annual, integrated, sustainability and governance reports, investor communications, leadership messaging and advisory.</p><div class="actions"><a class="btn ghost" href="services.html">All services</a></div></div>
-{accordion(SERVICES[:5])}
-</div></section>
-
-<section><div class="wrap">
-<div class="sec-head"><div><h2>Expertise</h2><p class="intro">Qualifications in finance and sustainable investing support every report.</p></div></div>
-<ul class="expertise">
-<li><img src="assets/badges/cfa.svg" alt=""><div><h3>Certificate in Sustainable Investing</h3><p>CFA Institute</p></div></li>
-<li><img src="assets/badges/fmva.svg" alt=""><div><h3>Financial Modelling and Valuation Analyst (FMVA)</h3><p>Corporate Finance Institute</p></div></li>
-<li><img src="assets/badges/arc.png" alt=""><div><h3>Awards judge</h3><p>ARC Awards and MEIRA Reporting Awards 2025</p></div></li>
-</ul>
-</div></section>
-
 <section class="sec-accent"><div class="wrap founder">
 {PORTRAIT}
 <div class="bio">
 <h2>About us</h2>
-<p>Mikhail Seleznev founded Frisson Writing in 2026 after six years at a leading corporate reporting agency in London and Dubai.</p>
-<p>He has led content development on more than 30 reports for listed and pre-IPO companies, working closely with investor relations and communication teams.</p>
+{"".join(f"<p>{x}</p>" for x in BIO)}
 <div class="actions"><a class="btn ghost" href="founder.html">Read more</a><a class="btn ghost" href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a></div>
 </div>
 </div></section>
@@ -578,8 +589,7 @@ founder = f"""<section class="hero"><div class="wrap founder">
 {PORTRAIT}
 <div class="bio">
 <h1 style="margin-bottom:24px">Mikhail Seleznev</h1>
-<p>Before founding Frisson Writing in 2026, Mikhail spent six years at a leading corporate reporting agency in London and Dubai, leading content development on annual and sustainability reports for companies listed in the GCC and internationally.</p>
-<p>His work brings together financial analysis, sustainability reporting and investor messaging. He has interviewed more than 40 board members and senior executives, and those conversations shape every narrative he builds.</p>
+{"".join(f"<p>{x}</p>" for x in BIO)}
 <p>He also speaks at industry events, leading workshops and panels at MEIRA conferences and chapter meetings, and has judged the ARC Awards and the MEIRA Reporting Awards.</p>
 </div>
 </div></section>
