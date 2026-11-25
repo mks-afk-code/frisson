@@ -69,7 +69,7 @@ h2{{font-family:Lora;font-weight:400;font-size:13pt;margin-bottom:3mm}}
 <div class="cred"><img src="{A}badges/fmva.svg"><div><b>Financial Modelling and Valuation Analyst</b><span>Corporate Finance Institute</span></div></div>
 <div class="cred"><img src="{A}badges/arc.png"><div><b>Awards judge</b><span>ARC Awards and MEIRA Reporting Awards 2025</span></div></div></div></div>
 <div class="about"><img src="{A}founder.jpg"><div><h2>About us</h2>
-<p>Mikhail Seleznev founded Frisson Writing in 2026 after six years at a leading corporate reporting agency in London and Dubai. He has led content development on more than 30 reports for listed and pre-IPO companies, working closely with investor relations and communication teams.</p>
+<p>Mikhail Seleznev founded Frisson Writing in 2026 after six years at a leading corporate reporting agency while based in London and Dubai. He has led content development on more than 30 reports for listed and pre-IPO companies, working closely with investor relations and communication teams.</p>
 <p>He has interviewed more than 40 board members and senior executives, speaks at MEIRA conferences and holds a BA in History from Durham University, UK.</p></div></div>
 <div class="ex"><p>Experience with companies listed on</p><div class="exrow">{exch}</div></div>
 <div class="foot"><img src="{A}logo-light.svg"><div><a href="mailto:{b.EMAIL}">{b.EMAIL}</a><br><a href="https://frissonwriting.com">frissonwriting.com</a> &nbsp;·&nbsp; <a href="{b.LINKEDIN}">LinkedIn</a><br>Dubai, United Arab Emirates</div></div>
